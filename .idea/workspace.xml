@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04a6359a-9110-42e5-a8b8-d400a0ffc69c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Dima.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/example/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/example/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slider.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="slider.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="734">
+            <state relative-caret-position="938">
               <caret line="370" column="65" selection-start-line="370" selection-start-column="65" selection-end-line="370" selection-end-column="65" />
               <folding>
                 <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
@@ -63,6 +58,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
               <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -131,12 +135,12 @@
         <option value="$PROJECT_DIR$/src/package.json" />
         <option value="$PROJECT_DIR$/src/webpack.config.js" />
         <option value="$PROJECT_DIR$/../Custom Size – 1.svg" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/example/index.html" />
         <option value="$PROJECT_DIR$/example/script.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/example/style.css" />
         <option value="$PROJECT_DIR$/src/slider.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -238,12 +242,12 @@
       <workItem from="1596913284200" duration="4000" />
       <workItem from="1597061510343" duration="6319000" />
       <workItem from="1597071389570" duration="658000" />
-      <workItem from="1597141901782" duration="4109000" />
+      <workItem from="1597141901782" duration="4391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65626000" />
+    <option name="totallyTimeSpent" value="65908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -463,13 +467,6 @@
     <entry file="file://$PROJECT_DIR$/src/finalFile.js" />
     <entry file="file://$PROJECT_DIR$/src/script.js" />
     <entry file="file://$PROJECT_DIR$/src/style.css" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../webpack learning/dist/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -513,7 +510,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/slider.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
+        <state relative-caret-position="938">
           <caret line="370" column="65" selection-start-line="370" selection-start-column="65" selection-end-line="370" selection-end-column="65" />
           <folding>
             <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
@@ -525,6 +522,13 @@
             <element signature="n#!!block;n#stopAutoplay#0;n#!!block;n#createSlider#0" />
             <element signature="n#!!block;n#autoplayReset#0;n#!!block;n#createSlider#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
         </state>
       </provider>
     </entry>
