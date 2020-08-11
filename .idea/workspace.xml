@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="04a6359a-9110-42e5-a8b8-d400a0ffc69c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Dima.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/example/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/example/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slider.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slider.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/slider.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="734">
+              <caret line="370" column="65" selection-start-line="370" selection-start-column="65" selection-end-line="370" selection-end-column="65" />
+              <folding>
+                <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#switchToNextSlideMouse#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#switchToPreviousSlideMouse#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#automaticSettingPictureWidth#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#crateButtonControl#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#startAutoplay#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#stopAutoplay#0;n#!!block;n#createSlider#0" />
+                <element signature="n#!!block;n#autoplayReset#0;n#!!block;n#createSlider#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>a;</find>
+      <find>bo</find>
+      <find>efaultStyles</find>
+      <find>automaticSettingPictureSizes</find>
+      <find>pare</find>
+      <find>crateButtonControl</find>
+      <find>autopla</find>
+      <find>startAutopla</find>
+      <find>input</find>
+      <find>transitionSpeed</find>
+      <find>setting-name</find>
+      <find>//</find>
+      <find>objectParameter</find>
+      <find>buttonDefaultStyles</find>
+      <find>buttonContol</find>
+      <find>timeOfChangingSlides</find>
+      <find>switchToPreviousSlideMouse</find>
+      <find>beforeSlide</find>
+      <find>clearTimerList</find>
+      <find>afterSlide</find>
+      <find>afterSlide()</find>
+      <find />
+      <find>console.log</find>
+      <find>automaticSettingPictureWidth</find>
+      <find>slider</find>
+      <find>hideExtraSlides</find>
+      <find>itemIndexing</find>
+      <find>objectSlider</find>
+      <find>quer</find>
+      <find />
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/script.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/finalFile.js" />
+        <option value="$PROJECT_DIR$/src/finalFile.js" />
+        <option value="$PROJECT_DIR$/src/manual_control_slides/touchmove_control/touchmove_control-function_events.js" />
+        <option value="$PROJECT_DIR$/src/manual_control_slides/buttons_control/buttons_control-create_elements.js" />
+        <option value="$PROJECT_DIR$/src/manual_control_slides/buttons_control/buttons_control-function_events.js" />
+        <option value="$PROJECT_DIR$/src/creating_slides_list/finder_img_and_div/finder_img_and_div-adding_to_array.js" />
+        <option value="$PROJECT_DIR$/src/creating_slides_list/styling_slides/styling_slides-auto-width-slides.js" />
+        <option value="$PROJECT_DIR$/src/autoplay_slides/autoplay_slides-functions-control.js" />
+        <option value="$PROJECT_DIR$/src/package.json" />
+        <option value="$PROJECT_DIR$/src/webpack.config.js" />
+        <option value="$PROJECT_DIR$/../Custom Size – 1.svg" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/example/index.html" />
+        <option value="$PROJECT_DIR$/example/script.js" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/example/style.css" />
+        <option value="$PROJECT_DIR$/src/slider.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="271" />
+    <option name="y" value="-27" />
+    <option name="width" value="1161" />
+    <option name="height" value="551" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="slider not npm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slider not npm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slider not npm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slider not npm" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="slider not npm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slider not npm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../russian.dic" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dima\Desktop\slider\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="slider.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="slider.js" working-dir="$PROJECT_DIR$/src" />
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.slider.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="C:\Users\Dima\Desktop" CustomDictionaries="1" CustomDictionary0="C:\Users\Dima\Desktop\russian.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04a6359a-9110-42e5-a8b8-d400a0ffc69c" name="Default" comment="" />
+      <created>1596704091172</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596704091172</updated>
+      <workItem from="1596704096945" duration="21091000" />
+      <workItem from="1596797027606" duration="18519000" />
+      <workItem from="1596885886634" duration="5421000" />
+      <workItem from="1596902600475" duration="1265000" />
+      <workItem from="1596904428674" duration="7076000" />
+      <workItem from="1596912083019" duration="1164000" />
+      <workItem from="1596913284200" duration="4000" />
+      <workItem from="1597061510343" duration="6319000" />
+      <workItem from="1597071389570" duration="658000" />
+      <workItem from="1597141901782" duration="4109000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="65626000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14752372" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32897604" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32833335" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32897604" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="9" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4131">
+          <caret line="243" column="56" selection-start-line="243" selection-start-column="56" selection-end-line="243" selection-end-column="56" />
+          <folding>
+            <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToNextSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToPreviousSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#automaticSettingPictureWidth#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#crateButtonControl#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#startAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#stopAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#autoplayReset#0;n#!!block;n#createSlider#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4641">
+          <caret line="273" column="6" selection-start-line="273" selection-start-column="6" selection-end-line="273" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToNextSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToPreviousSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#automaticSettingPictureWidth#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#crateButtonControl#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#startAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#stopAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#autoplayReset#0;n#!!block;n#createSlider#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4641">
+          <caret line="273" column="6" selection-start-line="273" selection-start-column="6" selection-end-line="273" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5066">
+          <caret line="298" column="6" selection-start-line="298" selection-start-column="4" selection-end-line="298" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/script.js" />
+    <entry file="file://$PROJECT_DIR$/src/finalFile.js" />
+    <entry file="file://$PROJECT_DIR$/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/style.css" />
+    <entry file="file://$PROJECT_DIR$/src/webpack.config.js" />
+    <entry file="file://$PROJECT_DIR$/src/script.js" />
+    <entry file="file://$PROJECT_DIR$/src/finalFile.js" />
+    <entry file="file://$PROJECT_DIR$/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/style.css" />
+    <entry file="file://$PROJECT_DIR$/src/webpack.config.js" />
+    <entry file="file://$PROJECT_DIR$/src/script.js" />
+    <entry file="file://$PROJECT_DIR$/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/style.css" />
+    <entry file="file://$PROJECT_DIR$/src/finalFile.js" />
+    <entry file="file://$PROJECT_DIR$/src/script.js" />
+    <entry file="file://$PROJECT_DIR$/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/node_modules/bluebird/package.json" />
+    <entry file="file://$USER_HOME$/AppData/Roaming/npm/node_modules/webpack/bin/webpack.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="142" column="16" selection-start-line="142" selection-start-column="16" selection-end-line="142" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/webpack.config.js" />
+    <entry file="file://$PROJECT_DIR$/src/finalFile.js" />
+    <entry file="file://$PROJECT_DIR$/src/script.js" />
+    <entry file="file://$PROJECT_DIR$/src/style.css" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webpack learning/dist/main.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webpack learning/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../webpack learning/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="45" lean-forward="true" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="370" column="65" selection-start-line="370" selection-start-column="65" selection-end-line="370" selection-end-column="65" />
+          <folding>
+            <element signature="n#!!block;n#clearTimerList#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToNextSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#switchToPreviousSlideMouse#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#automaticSettingPictureWidth#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#crateButtonControl#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#startAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#stopAutoplay#0;n#!!block;n#createSlider#0" />
+            <element signature="n#!!block;n#autoplayReset#0;n#!!block;n#createSlider#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
