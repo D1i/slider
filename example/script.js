@@ -3,8 +3,8 @@
 const userSettingObject = {
     autoplay: true,
     timeOfChangingSlides: 5000,
-    transitionSpeedSlide: 50,
-    buttonContol: true,
+    transitionSpeedSlide: 20,
+    buttonControl: true,
     touchmove: true,
     buttonDefaultStyles: true,
     autoWidthSlides: true,
@@ -12,7 +12,4 @@ const userSettingObject = {
 
 createSlider("slider", userSettingObject);
 
-userSettingObject.buttonContol = false;
-userSettingObject.touchmove = false;
-
-createSlider("slider-second", {timeOfChangingSlides: 1000, transitionSpeedSlide: 10});
+// createSlider("slider-second");

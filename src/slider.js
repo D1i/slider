@@ -1,12 +1,12 @@
 "use strict";
 
 function createSlider(idElement, {
-    autoplay = true,
+    autoplay = false,
     timeOfChangingSlides = 5000,
     transitionSpeedSlide = 50,
-    buttonControl = true,
-    touchmove = true,
-    buttonDefaultStyles = true,
+    buttonControl = false,
+    touchmove = false,
+    buttonDefaultStyles = false,
     autoWidthSlides = true,
 } = {}) {
 
@@ -14,43 +14,67 @@ function createSlider(idElement, {
         timeOfChangingSlides = 4;
     }
 
-    function itemIndexing(parent) {
-        let idElemsArray = Array.from(parent.children).map(value => {
+    function slidesAddingInArray(parent) {
+        let slidesElementsArray = Array.from(parent.children).map(value => {
             if (value.tagName !== "INPUT") {
+                value.style.pointerEvents = "none";
+                console.log(value.scrollHeight);
                 return value;
             }
-            value.style.position = "absolute";
-            value.style.overflow = "hidden";
         });
 
-        objectSliderVisibleSlides.afterSlide = idElemsArray.length - 1;
-        objectSliderVisibleSlides.centerSlide = 0;
-        if (parent.children.length < 3) {
-            throw "Слайдер принимает, не менее 3х слайдов";
-        } else {
-            objectSliderVisibleSlides.beforeSlide = 1;
+        if (slidesElementsArray.length === 0) {
+                throw `| container '#${idElement}' is empty`
         }
 
-        idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-        idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-        idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
-        return idElemsArray
+        if (slidesElementsArray.length === 1) {
+
+            let firstCloneElement = slidesElementsArray[0].cloneNode(true);
+            let secondCloneElement = firstCloneElement.cloneNode(true);
+            slidesElementsArray.push(firstCloneElement);
+            slider.append(firstCloneElement);
+            slidesElementsArray.push(secondCloneElement);
+            slider.append(secondCloneElement);
+        }
+
+        if (slidesElementsArray.length === 2) {
+
+            slidesElementsArray.map(value => {
+                let cloneElement = value.cloneNode(true);
+                slidesElementsArray.push(cloneElement);
+                slider.append(cloneElement);
+            })
+
+        }
+
+
+        objectSliderVisibleSlides.afterSlide = slidesElementsArray.length - 1;
+        objectSliderVisibleSlides.currentSlide = 0;
+        objectSliderVisibleSlides.prevSlide = 1;
+
+        objectSliderVisibleSlides.prevSlide = 1;
+
+        slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
+        window.slidesElementsArray = slidesElementsArray;
+        return slidesElementsArray
     }
 
     function switchToRightSlide() {
         ++objectSliderVisibleSlides.afterSlide;
-        ++objectSliderVisibleSlides.centerSlide;
-        ++objectSliderVisibleSlides.beforeSlide;
+        ++objectSliderVisibleSlides.currentSlide;
+        ++objectSliderVisibleSlides.prevSlide;
 
-        switch (idElemsArray.length) {
+        switch (slidesElementsArray.length) {
             case objectSliderVisibleSlides.afterSlide :
                 objectSliderVisibleSlides.afterSlide = 0;
                 break;
-            case objectSliderVisibleSlides.centerSlide :
-                objectSliderVisibleSlides.centerSlide = 0;
+            case objectSliderVisibleSlides.currentSlide :
+                objectSliderVisibleSlides.currentSlide = 0;
                 break;
-            case objectSliderVisibleSlides.beforeSlide :
-                objectSliderVisibleSlides.beforeSlide = 0;
+            case objectSliderVisibleSlides.prevSlide :
+                objectSliderVisibleSlides.prevSlide = 0;
                 break;
         }
         hideExtraSlides();
@@ -58,29 +82,29 @@ function createSlider(idElement, {
 
     function switchToLeftSlide() {
         --objectSliderVisibleSlides.afterSlide;
-        --objectSliderVisibleSlides.centerSlide;
-        --objectSliderVisibleSlides.beforeSlide;
+        --objectSliderVisibleSlides.currentSlide;
+        --objectSliderVisibleSlides.prevSlide;
 
         switch (-1) {
             case objectSliderVisibleSlides.afterSlide :
-                objectSliderVisibleSlides.afterSlide = idElemsArray.length - 1;
+                objectSliderVisibleSlides.afterSlide = slidesElementsArray.length - 1;
                 break;
-            case objectSliderVisibleSlides.centerSlide :
-                objectSliderVisibleSlides.centerSlide = idElemsArray.length - 1;
+            case objectSliderVisibleSlides.currentSlide :
+                objectSliderVisibleSlides.currentSlide = slidesElementsArray.length - 1;
                 break;
-            case objectSliderVisibleSlides.beforeSlide :
-                objectSliderVisibleSlides.beforeSlide = idElemsArray.length - 1;
+            case objectSliderVisibleSlides.prevSlide :
+                objectSliderVisibleSlides.prevSlide = slidesElementsArray.length - 1;
                 break;
         }
         hideExtraSlides();
     }
 
     function hideExtraSlides() {
-        idElemsArray.forEach(value => value.style.display = "none");
+        slidesElementsArray.forEach(value => value.style.display = "none");
 
-        idElemsArray[objectSliderVisibleSlides.afterSlide].style.display = "block";
-        idElemsArray[objectSliderVisibleSlides.centerSlide].style.display = "block";
-        idElemsArray[objectSliderVisibleSlides.beforeSlide].style.display = "block";
+        slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.display = "block";
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.display = "block";
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.display = "block";
     }
 
     function clearTimerList() {
@@ -88,19 +112,19 @@ function createSlider(idElement, {
         timerList = [];
     }
 
-    function beforeSlide() {
+    function prevSlide() {
         clearTimerList();
 
         let player = setInterval( () => {
-            idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + transitionSpeed + "px";
-            idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft + transitionSpeed + "px";
-            idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft + transitionSpeed + "px";
-            if (idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= 0) {
+            slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + transitionSpeed + "px";
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft + transitionSpeed + "px";
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft + transitionSpeed + "px";
+            if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= 0) {
                 clearInterval(player);
                 switchToLeftSlide();
-                idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-                idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-                idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+                slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+                slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+                slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
             }
         }, 1);
         timerList.push(player);
@@ -110,51 +134,49 @@ function createSlider(idElement, {
         clearTimerList();
 
         let player = setInterval( () => {
-            idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft - transitionSpeed + "px";
-            idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft - transitionSpeed + "px";
-            idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft - transitionSpeed + "px";
-            if (idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft <= -sliderWidth * 2) {
+            slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft - transitionSpeed + "px";
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft - transitionSpeed + "px";
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft - transitionSpeed + "px";
+            if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft <= -sliderWidth * 2) {
                 clearInterval(player);
                 switchToRightSlide();
-                idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-                idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-                idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+                slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+                slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+                slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
             }
         }, 1);
         timerList.push(player);
     }
 
     function centerAlignSlide() {
-
         let player = null;
-        if (idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft > 0) {
+        if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft > 0) {
             player = setInterval( () => {
-                idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft - transitionSpeed + "px";
-                idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft - transitionSpeed + "px";
-                idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft - transitionSpeed + "px";
-                if (idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft <= -sliderWidth) {
+                slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft - transitionSpeed + "px";
+                slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft - transitionSpeed + "px";
+                slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft - transitionSpeed + "px";
+                if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft <= -sliderWidth) {
                     clearInterval(player);
 
-                    idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-                    idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-                    idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+                    slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+                    slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+                    slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
                 }
             }, 1);
+        }
+        if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft < 0) {
+            player = setInterval( () => {
+                slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + transitionSpeed + "px";
+                slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft + transitionSpeed + "px";
+                slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft + transitionSpeed + "px";
+                if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= -sliderWidth) {
+                    clearInterval(player);
 
-            if (idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft < 0) {
-                player = setInterval( () => {
-                    idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + transitionSpeed + "px";
-                    idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft + transitionSpeed + "px";
-                    idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft + transitionSpeed + "px";
-                    if (idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= -sliderWidth) {
-                        clearInterval(player);
-
-                        idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-                        idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-                        idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
-                    }
-                }, 1);
-            }
+                    slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+                    slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+                    slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
+                }
+            }, 1);
         }
     }
 
@@ -169,36 +191,37 @@ function createSlider(idElement, {
             distanceTraveled = -(xStarting - clientX);
         }
         xStarting += distanceTraveled;
-        idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + distanceTraveled + "px";
-        idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft + distanceTraveled + "px";
-        idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft + distanceTraveled + "px";
+        slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + distanceTraveled + "px";
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft + distanceTraveled + "px";
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft + distanceTraveled + "px";
         if (event.timeStamp - lastTimeStamp < 10) {
             turnSlide = true
         } else {
             turnSlide = false;
         }
         lastTimeStamp = event.timeStamp;
-        if (idElemsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= 0) {
+        if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= 0) {
             switchToLeftSlide();
 
-            idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-            idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-            idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+            slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
         }
 
-        if (idElemsArray[objectSliderVisibleSlides.beforeSlide].offsetLeft <= 0) {
+        if (slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft <= 0) {
             switchToRightSlide();
             hideExtraSlides();
-            idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-            idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-            idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+            slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
         }
     }
 
-    function checkingStatusCentralSlide() {
-        if (idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft > sliderWidth / 2 && !turnSlide && stopTurned) {
-            beforeSlide();
-        } else if (idElemsArray[objectSliderVisibleSlides.centerSlide].offsetLeft < -sliderWidth + sliderWidth / 2 && !turnSlide && stopTurned) {
+    function isSwitchcurrentSlide() {
+
+        if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft > sliderWidth / 2 && !turnSlide && stopTurned) {
+            prevSlide();
+        } else if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft < -sliderWidth + sliderWidth / 2 && !turnSlide && stopTurned) {
             afterSlide();
         } else if (!turnSlide && stopTurned) {
             centerAlignSlide();
@@ -207,7 +230,7 @@ function createSlider(idElement, {
         if (turnSlide) {
             stopTurned = true;
             if (directionSlideLeft) {
-                beforeSlide();
+                prevSlide();
             } else {
                 afterSlide();
             }
@@ -221,36 +244,50 @@ function createSlider(idElement, {
     }
 
     function switchToPreviousSlideMouse() {
-        beforeSlide();
+        prevSlide();
         autoplayReset(timeOfChangingSlides)
     }
 
     function automaticSettingPictureWidth() {
-        idElemsArray.forEach(value => {
+        slidesElementsArray.forEach(value => {
             value.style.position = "absolute";
             value.style.overflow = "hidden";
             value.style.width = sliderWidth + "px";
-            //Пока не придумал как вычислить необходимый отступ, чтобы центровать изображение. Все что пробую, приводит к башам.
-        })
+            value.style.top = `${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`;
+            console.log(`${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`)
+            //ПРОБЛЕМЫ С clientHeight & scrollHeight
+            //######################################
+            //######################################
+            //######################################
+            //######################################
+        });
+        hideExtraSlides();
     }
 
     function crateButtonControl(defaultStyles) {
         if (defaultStyles) {
             let inputLeft = document.createElement("input");
-            inputLeft.setAttribute("src", "img/arrow.png");
             inputLeft.setAttribute("type", "image");
+            inputLeft.setAttribute("src", "img/arrow.png");
             inputLeft.setAttribute("class", "leftButton");
             inputLeft.setAttribute("name", "arrowLeft");
             inputLeft.setAttribute("alt", "arrow left");
             slider.prepend(inputLeft);
 
             let inputRight = document.createElement("input");
-            inputRight.setAttribute("src", "img/arrow.png");
             inputRight.setAttribute("type", "image");
+            inputRight.setAttribute("src", "img/arrow.png");
             inputRight.setAttribute("class", "rightButton");
             inputRight.setAttribute("name", "arrowRight");
             inputRight.setAttribute("alt", "arrow right");
             slider.prepend(inputRight);
+
+            let inputPause = document.createElement("input");
+            inputPause.setAttribute("type", "button");
+            inputPause.setAttribute("class", "inputPauseNotActive");
+            inputPause.setAttribute("name", "pause");
+            inputPause.setAttribute("alt", "input pause");
+            slider.prepend(inputPause);
 
         } else {
             let inputLeft = document.createElement("input");
@@ -259,9 +296,9 @@ function createSlider(idElement, {
             inputLeft.setAttribute("type", "button");
 
             let inputRight = document.createElement("input");
+            inputRight.setAttribute("type", "button");
             inputRight.setAttribute("name", "arrowLeft");
             inputRight.setAttribute("alt", "arrow left");
-            inputRight.setAttribute("type", "button");
 
             slider.prepend(inputLeft);
             slider.prepend(inputRight);
@@ -290,35 +327,70 @@ function createSlider(idElement, {
         startAutoplay(timeOfChangingSlides);
     }
 
-    function scrollSliderMouseWheel(event) {
-        event.preventDefault();
-        if (event.wheelDeltaY > 0) {
-            clearTimerList();
-            beforeSlide();
+    function pauseSwitch() {
+        if (pauseStatus) {
+            autoplay = true;
+            stopAutoplay();
+            startAutoplay(timeOfChangingSlides);
+            slider.querySelector("input[name='pause']").setAttribute("class", "inputPauseNotActive");
         } else {
-            clearTimerList();
-            afterSlide();
+            stopAutoplay();
+            autoplay = false;
+            slider.querySelector("input[name='pause']").setAttribute("class", "inputPauseActive");
+        }
+
+        pauseStatus = !pauseStatus
+    }
+
+    function pseudoTouchMove(event) {
+        event.preventDefault();
+        if (hasPseudoTouchMouse) {
+            let pseudoEvent = {touches: [{clientX: 0},]};
+            pseudoEvent.touches[0].clientX = event.clientX;
+            moveSliderTouch(pseudoEvent);
         }
     }
 
+    function pseudoTouchMoveStart(event) {
+        hasPseudoTouchMouse = true;
+        xStarting = event.clientX;
+        stopAutoplay()
+    }
+
+    function pseudoTouchMoveEnd() {
+        hasPseudoTouchMouse = false;
+
+        if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft > sliderWidth / 2) {
+            prevSlide();
+        } else if (slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft < -sliderWidth + sliderWidth / 2) {
+            afterSlide();
+        } else {
+            centerAlignSlide();
+        }
+
+        autoplayReset(timeOfChangingSlides);
+    }
 
     const slider = document.getElementById(idElement);
     const sliderWidth = slider.clientWidth;
+    const sliderHeight = slider.clientHeight;
 
     let xStarting = 0;
     let lastTimeStamp = 0;
     let turnSlide = false;
     let stopTurned = false;
+    let pauseStatus = false;
     let directionSlideLeft = false;
     let autolpayTimer = null;
+    let hasPseudoTouchMouse = false;
     let timerList = [];
     const transitionSpeed = transitionSpeedSlide;
     const objectSliderVisibleSlides = {
         "afterSlide": 0,
-        "centerSlide": 1,
-        "beforeSlide": 2
+        "currentSlide": 1,
+        "prevSlide": 2
     };
-    let idElemsArray = itemIndexing(slider);
+    let slidesElementsArray = slidesAddingInArray(slider);
     hideExtraSlides();
 
     if (buttonControl) {
@@ -335,9 +407,9 @@ function createSlider(idElement, {
     }
 
     hideExtraSlides();
-    idElemsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
-    idElemsArray[objectSliderVisibleSlides.centerSlide].style.left = 0;
-    idElemsArray[objectSliderVisibleSlides.beforeSlide].style.left = sliderWidth + "px";
+    slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = -sliderWidth + "px";
+    slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
+    slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
     slider.style.overflow = "hidden";
     slider.style.position = "relative";
     slider.style.boxSizing = "border-box";
@@ -351,13 +423,22 @@ function createSlider(idElement, {
 
         slider.addEventListener("touchstart", event => {
             xStarting = event.touches[0].clientX;
-                clearTimerList();
+            clearTimerList();
             stopAutoplay();
         });
 
         slider.addEventListener("touchmove", moveSliderTouch);
 
-        slider.addEventListener("touchend", checkingStatusCentralSlide);
+        slider.addEventListener("touchend", isSwitchcurrentSlide);
+
+        //PSEUDO TOUCHMOVE
+        slider.addEventListener("mousedown", pseudoTouchMoveStart);
+
+        slider.addEventListener("mousemove", pseudoTouchMove);
+
+        slider.addEventListener("mouseup", pseudoTouchMoveEnd);
+
+        slider.addEventListener("mouseleave", pseudoTouchMoveEnd);
     }
 
     //MOUSE
@@ -368,6 +449,7 @@ function createSlider(idElement, {
         //Пока не придумал альтернативы. Можно перевести на классы думаю.
         slider.querySelector("input[name='arrowLeft']").addEventListener("click", switchToNextSlideMouse);
 
-        slider.addEventListener("wheel", scrollSliderMouseWheel);
+        slider.querySelector("input[name='pause']").addEventListener("click", pauseSwitch);
+
     }
 }
