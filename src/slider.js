@@ -10,6 +10,7 @@ function createSlider(idElement, {
     autoWidthSlides = true,
 } = {}) {
 
+
     if (timeOfChangingSlides < 4) {
         timeOfChangingSlides = 4;
     }
@@ -18,7 +19,6 @@ function createSlider(idElement, {
         let slidesElementsArray = Array.from(parent.children).map(value => {
             if (value.tagName !== "INPUT") {
                 value.style.pointerEvents = "none";
-                console.log(value.scrollHeight);
                 return value;
             }
         });
@@ -194,11 +194,7 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.afterSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft + distanceTraveled + "px";
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.currentSlide].offsetLeft + distanceTraveled + "px";
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = slidesElementsArray[objectSliderVisibleSlides.prevSlide].offsetLeft + distanceTraveled + "px";
-        if (event.timeStamp - lastTimeStamp < 10) {
-            turnSlide = true
-        } else {
-            turnSlide = false;
-        }
+        turnSlide = event.timeStamp - lastTimeStamp < 10;
         lastTimeStamp = event.timeStamp;
         if (slidesElementsArray[objectSliderVisibleSlides.afterSlide].offsetLeft >= 0) {
             switchToLeftSlide();
@@ -253,15 +249,17 @@ function createSlider(idElement, {
             value.style.position = "absolute";
             value.style.overflow = "hidden";
             value.style.width = sliderWidth + "px";
-            value.style.top = `${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`;
-            console.log(`${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`)
-            //ПРОБЛЕМЫ С clientHeight & scrollHeight
-            //######################################
-            //######################################
-            //######################################
-            //######################################
         });
         hideExtraSlides();
+    }
+
+    function automaticSettingPictureHeight() {
+        slidesElementsArray.forEach(value => {
+            value.style.display = "block";
+            value.style.top = `${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`;
+            console.log(`${Math.max(value.clientHeight, value.scrollHeight)}`)
+        });
+        hideExtraSlides()
     }
 
     function crateButtonControl(defaultStyles) {
@@ -372,6 +370,9 @@ function createSlider(idElement, {
     }
 
     const slider = document.getElementById(idElement);
+    if (slider === null) {
+        throw `| id ${idElement} does not exist`
+    }
     const sliderWidth = slider.clientWidth;
     const sliderHeight = slider.clientHeight;
 
@@ -400,7 +401,9 @@ function createSlider(idElement, {
 
     if (autoWidthSlides) {
         automaticSettingPictureWidth();
+        window.addEventListener("load", automaticSettingPictureHeight);
     }
+    window.addEventListener("load", () => {console.log('LOADED')});
 
     if (autoplay) {
         startAutoplay(timeOfChangingSlides);
