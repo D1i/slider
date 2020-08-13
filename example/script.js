@@ -12,4 +12,4 @@ const userSettingObject = {
 
 createSlider("slider", userSettingObject);
 
-createSlider("slider-second");
+// createSlider("slider-second");
