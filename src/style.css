@@ -1,24 +1,51 @@
+/*СТИЛИ ДЛЯ СЛАЙДЕРА*/
+
+.slider {
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*_________________________*/
+/*#########################*/
 /*СТИЛИ ДЛЯ КНОПОК СЛАЙДЕРА*/
+
+.leftButton,
+.rightButton,
+.inputPauseNotActive,
+.inputPauseActive {
+    outline: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
 
 .leftButton {
     width: 30px;
     height: 60px;
-    z-index: 1;
+    z-index: 5;
     position: absolute;
     right: 10px;
-    top: calc(50% - 60px);
-    outline: none;
 }
 
 .rightButton {
     width: 30px;
     height: 60px;
-    z-index: 1;
+    z-index: 5;
     position: absolute;
     left: 10px;
     transform: rotate(180deg);
-    top: calc(50% - 60px);
-    outline: none;
 }
 
 .inputPauseNotActive {
@@ -26,13 +53,11 @@
     height: 40px;
     border: none;
     background-color: transparent;
-    outline: none;
     border-right: 5px Solid #9e9e9e;
     border-left: 5px Solid #9e9e9e;
     position: absolute;
-    z-index: 1;
-    bottom: 20px;
-    left: calc(50% - 5px);
+    z-index: 5;
+    bottom: 10%;
 }
 
 .inputPauseActive {
@@ -40,13 +65,21 @@
     height: 40px;
     border: none;
     background-color: transparent;
-    outline: none;
     border: 20px solid transparent;
     border-left: 20px solid #9e9e9e;
     position: absolute;
-    z-index: 1;
-    bottom: 20px;
-    left: calc(50% - 10px);
+    z-index: 5;
+    bottom: 10%;
+    margin-right: -30px;
+}
+
+/*_________________________*/
+/*#########################*/
+/*СТИЛИ ДЛЯ СЛАЙДОВ*/
+
+.slides {
+    position: absolute;
+    overflow: hidden;
 }
 
 /*_________________________*/

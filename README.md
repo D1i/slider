@@ -32,7 +32,7 @@
     createSlider("slider", { transitionTimingFunctionName: "linear" });
 ```
 
-`buttonControl` (boolean) - указывает, создавать ли кнопки управления сладером и autoplay. Если "autoplay: false", то кнопка для управления autoplay, не создается.
+`buttonControl` (boolean) - указывает, создавать ли кнопки управления сладером и autoplay.
 Значение по умолчанию: true.
 ```JS
     createSlider("slider", { buttonControl: true });
