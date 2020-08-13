@@ -1,6 +1,4 @@
-* {
-    box-sizing: border-box;
-}
+@import "../src/style.css";
 
 body {
     margin: 0;
@@ -22,116 +20,8 @@ body {
     margin-top: 50px;
 }
 
-/*СТИЛИ ДЛЯ КНОПОК СЛАЙДЕРА*/
-
-.leftButton {
-    width: 30px;
-    height: 60px;
-    z-index: 1;
-    position: absolute;
-    right: 10px;
-    top: calc(50% - 60px);
-    outline: none;
-}
-
-.rightButton {
-    width: 30px;
-    height: 60px;
-    z-index: 1;
-    position: absolute;
-    left: 10px;
-    transform: rotate(180deg);
-    top: calc(50% - 60px);
-    outline: none;
-}
-
-.inputPauseNotActive {
-    width: 10px;
-    height: 40px;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-right: 5px Solid #9e9e9e;
-    border-left: 5px Solid #9e9e9e;
-    position: absolute;
-    z-index: 1;
-    bottom: 20px;
-    left: calc(50% - 5px);
-}
-
-.inputPauseActive {
-    width: 40px;
-    height: 40px;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border: 20px solid transparent;
-    border-left: 20px solid #9e9e9e;
-    position: absolute;
-    z-index: 1;
-    bottom: 20px;
-    left: calc(50% - 10px);
-}
-
-/*_________________________*/
-
-/*СТИЛИ ДЛЯ ССЛАЙДЕРА*/
-
-/*#slider > img {*/
-    /*pointer-events: none;*/
-/*}*/
-
-/*##########################*/
-
 .pseudo-img {
     height: 500px;
     background: chartreuse url("https://cdn.wallpapersafari.com/15/95/rlf263.jpg") center no-repeat;
     background-size: 1000px 500px;
-}
-
-.code-header {
-    font-size: 20px;
-}
-
-.code {
-    background-color: #272920;
-    color: #fff;
-    width: 700px;
-    padding: 50px 10px;
-}
-
-.code-comment {
-    color: #9e9e9e;
-}
-
-.code-function {
-    color: #a2ff10;
-}
-
-.code-string {
-    color: #dad931;
-}
-
-.code-variable {
-    color: #ec961a
-}
-
-.code-keywords {
-    color: #f22021;
-}
-
-.code-numbers {
-    color: #8c4af3
-}
-
-.values-setting-block {
-    max-width: 1000px;
-}
-
-.values-setting-block > div {
-    margin-top: 50px;
-}
-
-.setting-name {
-    color: #581b1f;
 }

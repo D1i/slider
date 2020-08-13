@@ -7,7 +7,6 @@ function createSlider(idElement, {
     buttonControl = false,
     touchmove = false,
     buttonDefaultStyles = false,
-    autoWidthSlides = true,
 } = {}) {
 
 
@@ -16,10 +15,11 @@ function createSlider(idElement, {
     }
 
     function slidesAddingInArray(parent) {
-        let slidesElementsArray = Array.from(parent.children).map(value => {
+        Array.from(parent.children).forEach(value => {
+            //РЕКОМЕНДОВАЛИ СДЕЛАТЬ forEach
             if (value.tagName !== "INPUT") {
                 value.style.pointerEvents = "none";
-                return value;
+                slidesElementsArray.push(value);
             }
         });
 
@@ -58,7 +58,7 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
         window.slidesElementsArray = slidesElementsArray;
-        return slidesElementsArray
+        // return slidesElementsArray
     }
 
     function switchToRightSlide() {
@@ -257,7 +257,6 @@ function createSlider(idElement, {
         slidesElementsArray.forEach(value => {
             value.style.display = "block";
             value.style.top = `${((Math.max(value.clientHeight, value.scrollHeight) - sliderHeight) / 2) * -1}px`;
-            console.log(`${Math.max(value.clientHeight, value.scrollHeight)}`)
         });
         hideExtraSlides()
     }
@@ -375,7 +374,6 @@ function createSlider(idElement, {
     }
     const sliderWidth = slider.clientWidth;
     const sliderHeight = slider.clientHeight;
-
     let xStarting = 0;
     let lastTimeStamp = 0;
     let turnSlide = false;
@@ -391,7 +389,8 @@ function createSlider(idElement, {
         "currentSlide": 1,
         "prevSlide": 2
     };
-    let slidesElementsArray = slidesAddingInArray(slider);
+    let slidesElementsArray = [];
+    slidesAddingInArray(slider)
     hideExtraSlides();
 
     if (buttonControl) {
@@ -399,11 +398,13 @@ function createSlider(idElement, {
     }
 
 
-    if (autoWidthSlides) {
-        automaticSettingPictureWidth();
-        window.addEventListener("load", automaticSettingPictureHeight);
-    }
-    window.addEventListener("load", () => {console.log('LOADED')});
+    //autoWidthSlides
+    //###############
+
+    automaticSettingPictureWidth();
+    window.addEventListener("load", automaticSettingPictureHeight);
+
+    //###############
 
     if (autoplay) {
         startAutoplay(timeOfChangingSlides);
@@ -416,7 +417,6 @@ function createSlider(idElement, {
     slider.style.overflow = "hidden";
     slider.style.position = "relative";
     slider.style.boxSizing = "border-box";
-
 
     //###############EVENTS
     //#####################
@@ -435,6 +435,7 @@ function createSlider(idElement, {
         slider.addEventListener("touchend", isSwitchcurrentSlide);
 
         //PSEUDO TOUCHMOVE
+
         slider.addEventListener("mousedown", pseudoTouchMoveStart);
 
         slider.addEventListener("mousemove", pseudoTouchMove);
