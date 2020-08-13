@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04a6359a-9110-42e5-a8b8-d400a0ffc69c" name="Default" comment="">
+    <list default="true" id="04a6359a-9110-42e5-a8b8-d400a0ffc69c" name="Default" comment="Убрал console.log и лишние пробелы.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/example/style.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,10 +17,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="162">
               <caret line="52" column="3" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
             </state>
           </provider>
@@ -29,20 +29,20 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+            <state relative-caret-position="272">
+              <caret line="16" column="99" selection-start-line="16" selection-start-column="99" selection-end-line="16" selection-end-column="99" />
               <folding>
-                <marker date="1597332032908" expanded="true" signature="430:817" ph="..." />
+                <marker date="1597332839844" expanded="true" signature="430:817" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="425">
+              <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -59,8 +59,8 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="170">
+              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -68,8 +68,32 @@
       <file leaf-file-name="slider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/slider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="147" column="38" selection-start-line="147" selection-start-column="38" selection-end-line="147" selection-end-column="38" />
+            <state relative-caret-position="284">
+              <caret line="121" selection-start-line="121" selection-end-line="121" />
+              <folding>
+                <element signature="e#390#2611#0" />
+                <element signature="e#2646#3008#0" />
+                <element signature="e#3041#3431#0" />
+                <element signature="e#3466#4141#0" />
+                <element signature="e#4177#4915#0" />
+                <element signature="e#4947#5037#0" />
+                <element signature="e#5075#5625#0" />
+                <element signature="e#5671#5908#0" />
+                <element signature="e#5955#6205#0" />
+                <element signature="e#6254#8185#0" />
+                <element signature="e#8236#8383#0" />
+                <element signature="e#8413#8513#0" />
+                <element signature="e#8564#8709#0" />
+                <element signature="e#8738#9200#0" />
+                <element signature="e#9238#9450#0" />
+                <element signature="e#9493#9594#0" />
+                <element signature="e#9630#9751#0" />
+                <element signature="e#9785#11093#0" />
+                <element signature="e#11126#12380#0" />
+                <element signature="e#13950#14587#0" />
+                <element signature="e#14625#15220#0" />
+                <element signature="e#15567#15720#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,8 +101,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+            <state relative-caret-position="398">
+              <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -95,7 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>-${</find>
       <find>left =</find>
       <find>buttonBlock</find>
       <find>buttonBlocked</find>
@@ -125,6 +148,7 @@
       <find>add</find>
       <find>nextSlideShiftLeft</find>
       <find>left</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,12 +180,12 @@
         <option value="$PROJECT_DIR$/../touch move/index.html" />
         <option value="$PROJECT_DIR$/../touch move/script.js" />
         <option value="$PROJECT_DIR$/../Новая папка (2)/slider/example/script.js" />
-        <option value="$PROJECT_DIR$/src/style.css" />
         <option value="$PROJECT_DIR$/example/script.js" />
-        <option value="$PROJECT_DIR$/example/style.css" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/style.css" />
         <option value="$PROJECT_DIR$/example/index.html" />
         <option value="$PROJECT_DIR$/src/slider.js" />
-        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/example/style.css" />
       </list>
     </option>
   </component>
@@ -265,7 +289,7 @@
       <workItem from="1597061510343" duration="6319000" />
       <workItem from="1597071389570" duration="658000" />
       <workItem from="1597141901782" duration="4391000" />
-      <workItem from="1597306329849" duration="25779000" />
+      <workItem from="1597306329849" duration="27321000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Loader для функции выравнивания картинок по высоте. Добавил новую функцию automaticSettingPictureHeight.">
       <created>1597247989682</created>
@@ -295,11 +319,25 @@
       <option name="project" value="LOCAL" />
       <updated>1597332216623</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Убрал лишние пробелы.">
+      <created>1597332748598</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597332748598</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Убрал console.log и лишние пробелы.">
+      <created>1597334431326</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1597334431326</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97038000" />
+    <option name="totallyTimeSpent" value="98580000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -307,12 +345,13 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14752372" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32897604" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3278867" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3278867" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -356,11 +395,13 @@
     <MESSAGE value="Отредактировал код. Коммит, перед переходом на другой способ смены слайдов." />
     <MESSAGE value="Перенес код с setInterval на transform и transition-duration. К сожалению, от style.left полностью отказаться не могу, т.к. слайдер перестает корректно работать." />
     <MESSAGE value="Отредактировал README, example и пофиксил баги с фиксированными размерами слайдера." />
-    <option name="LAST_COMMIT_MESSAGE" value="Отредактировал README, example и пофиксил баги с фиксированными размерами слайдера." />
+    <MESSAGE value="Убрал лишние пробелы." />
+    <MESSAGE value="Убрал console.log и лишние пробелы." />
+    <option name="LAST_COMMIT_MESSAGE" value="Убрал console.log и лишние пробелы." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -536,10 +577,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/style.css">
+    <entry file="file://$PROJECT_DIR$/example/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+        <state relative-caret-position="170">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -552,39 +593,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
-          <folding>
-            <marker date="1597332032908" expanded="true" signature="430:817" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/style.css">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="147" column="38" selection-start-line="147" selection-start-column="38" selection-end-line="147" selection-end-column="38" />
+          <caret line="16" column="99" selection-start-line="16" selection-start-column="99" selection-end-line="16" selection-end-column="99" />
+          <folding>
+            <marker date="1597332839844" expanded="true" signature="430:817" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="162">
           <caret line="52" column="3" selection-start-line="52" selection-start-column="3" selection-end-line="52" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+          <folding>
+            <element signature="e#390#2611#0" />
+            <element signature="e#2646#3008#0" />
+            <element signature="e#3041#3431#0" />
+            <element signature="e#3466#4141#0" />
+            <element signature="e#4177#4915#0" />
+            <element signature="e#4947#5037#0" />
+            <element signature="e#5075#5625#0" />
+            <element signature="e#5671#5908#0" />
+            <element signature="e#5955#6205#0" />
+            <element signature="e#6254#8185#0" />
+            <element signature="e#8236#8383#0" />
+            <element signature="e#8413#8513#0" />
+            <element signature="e#8564#8709#0" />
+            <element signature="e#8738#9200#0" />
+            <element signature="e#9238#9450#0" />
+            <element signature="e#9493#9594#0" />
+            <element signature="e#9630#9751#0" />
+            <element signature="e#9785#11093#0" />
+            <element signature="e#11126#12380#0" />
+            <element signature="e#13950#14587#0" />
+            <element signature="e#14625#15220#0" />
+            <element signature="e#15567#15720#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
         </state>
       </provider>
     </entry>
