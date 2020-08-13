@@ -1,13 +1,13 @@
 "use strict";
 
 function createSlider(idElement, {
-    autoplay = false,
+    autoplay = true,
     timeOfChangingSlides = 5000,
     timeToChangeSlides = 1000,
     transitionTimingFunctionName = "linear",
-    buttonControl = false,
-    touchmove = false,
-    buttonDefaultStyles = false,
+    buttonControl = true,
+    touchmove = true,
+    buttonDefaultStyles = true,
 } = {}) {
 
 
@@ -64,9 +64,9 @@ function createSlider(idElement, {
 
         objectSliderVisibleSlides.prevSlide = 1;
 
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.left = -sliderWidth + "px";
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.left = sliderWidth + "px";
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = sliderWidth + "px";
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = -sliderWidth + "px";
         window.slidesElementsArray = slidesElementsArray;
     }
 
@@ -195,13 +195,15 @@ function createSlider(idElement, {
             inputRight.style.zIndex = "10";
             slider.prepend(inputRight);
 
-            let inputPause = document.createElement("input");
-            inputPause.setAttribute("type", "button");
-            inputPause.setAttribute("class", "inputPauseNotActive");
-            inputPause.setAttribute("name", "pause");
-            inputPause.setAttribute("alt", "input pause");
-            inputPause.style.zIndex = "10";
-            slider.prepend(inputPause);
+            if (autoplay) {
+                let inputPause = document.createElement("input");
+                inputPause.setAttribute("type", "button");
+                inputPause.setAttribute("class", "inputPauseNotActive");
+                inputPause.setAttribute("name", "pause");
+                inputPause.setAttribute("alt", "input pause");
+                inputPause.style.zIndex = "10";
+                slider.prepend(inputPause);
+            }
 
         } else {
             let inputLeft = document.createElement("input");
@@ -281,20 +283,20 @@ function createSlider(idElement, {
     function rightSliderShift() {
         switchSlideBlocked = true;
 
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("sliderShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add("sliderShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("sliderShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${0}px)`;
 
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("nextSlideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("currentSlideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("prevSlideShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
 
         switchToRightSlide();
 
         setTimeout( () => {
-            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("sliderShiftLeft");
-            slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("sliderShiftLeft");
-            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("sliderShiftLeft");
+            slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${0}px)`;
             switchSlideBlocked = false;
             pseudoTouchMoveEnd();
             }, timeToChangeSlides)
@@ -306,16 +308,16 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add("sliderShiftRight");
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("sliderShiftRight");
 
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("nextSlideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("currentSlideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("prevSlideShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
 
         switchToLeftSlide();
 
         setTimeout( () => {
-            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("sliderShiftRight");
-            slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("sliderShiftRight");
-            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("sliderShiftRight");
+            slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
+            slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${0}px)`;
             switchSlideBlocked = false;
             pseudoTouchMoveEnd();
         }, timeToChangeSlides)
@@ -345,9 +347,9 @@ function createSlider(idElement, {
     slidesAddingInArray(slider);
     hideExtraSlides();
 
-    slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("nextSlideShiftLeft");
-    slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add("currentSlideShiftLeft");
-    slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("prevSlideShiftLeft");
+    slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth * 2}px)`;
+    slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
+    slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth * -2}px)`;
     slider.style.overflow = "hidden";
     slider.style.position = "relative";
     slider.style.boxSizing = "border-box";
@@ -412,8 +414,9 @@ function createSlider(idElement, {
                 rightSliderShift();
             }
         });
-
-        slider.querySelector("input[name='pause']").addEventListener("click", pauseSwitch);
+        if (autoplay) {
+            slider.querySelector("input[name='pause']").addEventListener("click", pauseSwitch);
+        }
 
     }
 
@@ -424,5 +427,6 @@ function createSlider(idElement, {
     setTimeout(() => {slidesElementsArray.forEach(value => {
         value.style.transitionDuration = `${timeToChangeSlides}ms`;
         value.style.transitionTimingFunction = transitionTimingFunctionName;
+
     })}, 1);
 }

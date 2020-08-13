@@ -9,12 +9,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
-#slider {
+#firstSlider {
     width: 1000px;
     height: 500px;
 }
 
-#slider-second {
+#secondSlider {
     width: 500px;
     height: 300px;
     margin-top: 50px;

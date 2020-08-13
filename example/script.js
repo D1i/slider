@@ -1,15 +1,12 @@
 "use strict";
 
-const userSettingObject = {
-    autoplay: true,
-    timeOfChangingSlides: 5000,
-    transitionSpeedSlide: 20,
-    buttonControl: true,
+createSlider("firstSlider", {
+    autoplay: false,
+    timeOfChangingSlides: 2000,
+    timeToChangeSlides: 500,
+    transitionTimingFunctionName: "easeInOutCubic",
+    buttonControl: false,
     touchmove: true,
     buttonDefaultStyles: true,
-    autoWidthSlides: true,
-};
-
-createSlider("slider", userSettingObject);
-
-// createSlider("slider-second");
+});
+createSlider("secondSlider");
