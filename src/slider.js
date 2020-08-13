@@ -10,7 +10,6 @@ function createSlider(idElement, {
     buttonDefaultStyles = true,
 } = {}) {
 
-
     if (timeOfChangingSlides < 4) {
         timeOfChangingSlides = 4;
     }
@@ -22,13 +21,10 @@ function createSlider(idElement, {
                 slidesElementsArray.push(value);
             }
         });
-
         if (slidesElementsArray.length === 0) {
                 throw `| container '#${idElement}' is empty`
         }
-
         if (slidesElementsArray.length === 1) {
-
             let firstCloneElement = slidesElementsArray[0].cloneNode(true);
             let secondCloneElement = firstCloneElement.cloneNode(true);
             slidesElementsArray.push(firstCloneElement);
@@ -36,7 +32,6 @@ function createSlider(idElement, {
             slidesElementsArray.push(secondCloneElement);
             slider.append(secondCloneElement);
         }
-
         if (slidesElementsArray.length === 2) {
             slidesElementsArray.map(value => {
                 let cloneElement = value.cloneNode(true);
@@ -44,7 +39,6 @@ function createSlider(idElement, {
                 slider.append(cloneElement);
             });
         }
-
         if (slidesElementsArray.length === 3) {
             let firstCloneElement = slidesElementsArray[0].cloneNode(true);
             let secondCloneElement = slidesElementsArray[1].cloneNode(true);
@@ -56,14 +50,9 @@ function createSlider(idElement, {
             slidesElementsArray.push(thirdCloneElement);
             slider.append(thirdCloneElement);
         }
-
-
         objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
         objectSliderVisibleSlides.currentSlide = 0;
         objectSliderVisibleSlides.prevSlide = 1;
-
-        objectSliderVisibleSlides.prevSlide = 1;
-
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.left = sliderWidth + "px";
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = -sliderWidth + "px";
@@ -91,7 +80,6 @@ function createSlider(idElement, {
         ++objectSliderVisibleSlides.nextSlide;
         ++objectSliderVisibleSlides.currentSlide;
         ++objectSliderVisibleSlides.prevSlide;
-
         switch (slidesElementsArray.length) {
             case objectSliderVisibleSlides.nextSlide :
                 objectSliderVisibleSlides.nextSlide = 0;
@@ -111,7 +99,6 @@ function createSlider(idElement, {
         --objectSliderVisibleSlides.nextSlide;
         --objectSliderVisibleSlides.currentSlide;
         --objectSliderVisibleSlides.prevSlide;
-
         switch (-1) {
             case objectSliderVisibleSlides.nextSlide :
                 objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
@@ -136,7 +123,6 @@ function createSlider(idElement, {
         if (switchSlideBlocked) {
             return;
         }
-
         const clientX = event.touches[0].clientX;
         distanceTraveled = 0;
 
@@ -146,16 +132,12 @@ function createSlider(idElement, {
             distanceTraveled += -(xStarting - clientX);
         }
         console.log(distanceTraveled);
-
-
         if (distanceTraveled > sliderWidth / 3) {
             leftSliderShift();
         }
-
         if (distanceTraveled < -sliderWidth / 3) {
             rightSliderShift();
         }
-
     }
 
     function automaticSettingPictureWidth() {
@@ -275,14 +257,11 @@ function createSlider(idElement, {
     function pseudoTouchMoveEnd() {
         hasPseudoTouchMouse = false;
         distanceTraveled = 0;
-
-
         autoplayReset(timeOfChangingSlides);
     }
 
     function rightSliderShift() {
         switchSlideBlocked = true;
-
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${0}px)`;
@@ -290,9 +269,7 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
-
         switchToRightSlide();
-
         setTimeout( () => {
             slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
             slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
@@ -311,9 +288,7 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
-
         switchToLeftSlide();
-
         setTimeout( () => {
             slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${0}px)`;
             slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${0}px)`;
@@ -346,14 +321,12 @@ function createSlider(idElement, {
 
     slidesAddingInArray(slider);
     hideExtraSlides();
-
     slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `transform: translateX(${sliderWidth * 2}px)`;
     slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `transform: translateX(${sliderWidth}px)`;
     slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `transform: translateX(${sliderWidth * -2}px)`;
     slider.style.overflow = "hidden";
     slider.style.position = "relative";
     slider.style.boxSizing = "border-box";
-
     if (buttonControl) {
         crateButtonControl(buttonDefaultStyles);
     }
@@ -375,15 +348,12 @@ function createSlider(idElement, {
     //TOUCHMOVE
 
     if (touchmove) {
-
         slider.addEventListener("touchstart", event => {
             xStarting = event.touches[0].clientX;
             clearTimerList();
             stopAutoplay();
         });
-
         slider.addEventListener("touchmove", moveSliderTouch);
-
         slider.addEventListener("touchend", () => {
         distanceTraveled = 0
         });
@@ -391,18 +361,14 @@ function createSlider(idElement, {
         //PSEUDO TOUCHMOVE
 
         slider.addEventListener("mousedown", pseudoTouchMoveStart);
-
         slider.addEventListener("mousemove", pseudoTouchMove);
-
         slider.addEventListener("mouseup", pseudoTouchMoveEnd);
-
         slider.addEventListener("mouseleave", pseudoTouchMoveEnd);
     }
 
     //MOUSE
 
     if (buttonControl) {
-
         slider.querySelector("input[name='arrowRight']").addEventListener("click", () => {
             if (!switchSlideBlocked) {
                 leftSliderShift();
@@ -417,7 +383,6 @@ function createSlider(idElement, {
         if (autoplay) {
             slider.querySelector("input[name='pause']").addEventListener("click", pauseSwitch);
         }
-
     }
 
     //#########################################asyncCode######################################
@@ -427,6 +392,5 @@ function createSlider(idElement, {
     setTimeout(() => {slidesElementsArray.forEach(value => {
         value.style.transitionDuration = `${timeToChangeSlides}ms`;
         value.style.transitionTimingFunction = transitionTimingFunctionName;
-
     })}, 1);
 }
