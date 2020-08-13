@@ -56,6 +56,7 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.left = sliderWidth + "px";
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.left = 0;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.left = -sliderWidth + "px";
+        // К сожалению, от style.left полность отказаться пока не могу.
         window.slidesElementsArray = slidesElementsArray;
     }
 
@@ -68,7 +69,6 @@ function createSlider(idElement, {
 
     function hideExtraSlides() {
         slidesElementsArray.forEach(value => {value.style.display = "none";
-            debugger
         });
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.display = "block";
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.display = "block";
