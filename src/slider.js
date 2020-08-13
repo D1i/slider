@@ -131,7 +131,6 @@ function createSlider(idElement, {
         } else {
             distanceTraveled += -(xStarting - clientX);
         }
-        console.log(distanceTraveled);
         if (distanceTraveled > sliderWidth / 3) {
             leftSliderShift();
         }
