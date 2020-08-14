@@ -299,7 +299,9 @@ function createSlider(idElement, {
     };
 
     const slidesElementsArray = checkRequiredQuantitySliderChildren(getSlidesArray(slider));
+
     init();
+
     if (slidesElementsArray.length === 0) {
         return console.log(`
         ##############################################
