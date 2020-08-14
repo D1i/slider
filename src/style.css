@@ -21,10 +21,9 @@
 /*#########################*/
 /*СТИЛИ ДЛЯ КНОПОК СЛАЙДЕРА*/
 
-.leftButton,
-.rightButton,
-.inputPauseNotActive,
-.inputPauseActive {
+.button,
+.inputPauseActive,
+.inputPauseNotActive {
     outline: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -32,16 +31,13 @@
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
-}
-
-.leftButton,
-.rightButton {
-    width: 30px;
-    height: 60px;
     position: absolute;
 }
 
-.leftButton {
+.button {
+    width: 30px;
+    height: 60px;
+    margin: 10px;
     right: 10px;
 }
 
@@ -53,7 +49,7 @@
 .inputPauseNotActive,
 .inputPauseActive {
     height: 40px;
-    transition-duration: 1s;
+    transition-duration: 0.2s;
     background-color: transparent;
     position: absolute;
     bottom: 10%;

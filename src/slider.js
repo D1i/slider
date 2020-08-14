@@ -142,7 +142,7 @@ function createSlider(idElement, {
             buttonControlElementsList.leftButtonControl.setAttribute("src", "img/arrow.png");
             buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
             buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
-            buttonControlElementsList.leftButtonControl.classList.add("leftButton", "leftButtonContol");
+            buttonControlElementsList.leftButtonControl.classList.add("button");
             slider.append(buttonControlElementsList.leftButtonControl);
 
             buttonControlElementsList.rightButtonControl = document.createElement("input");
@@ -150,7 +150,7 @@ function createSlider(idElement, {
             buttonControlElementsList.rightButtonControl.setAttribute("src", "img/arrow.png");
             buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowRight");
             buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow right");
-            buttonControlElementsList.rightButtonControl.classList.add("rightButton", "RightButtonContol");
+            buttonControlElementsList.rightButtonControl.classList.add("rightButton", "button");
             slider.append(buttonControlElementsList.rightButtonControl);
 
             buttonControlElementsList.pauseButtonControl = document.createElement("input");
@@ -256,12 +256,16 @@ function createSlider(idElement, {
         if (timeOfChangingSlides < 4) {
             timeOfChangingSlides = 4;
         }
+        if (timeToChangeSlides > (timeOfChangingSlides / 100) * 20) {
+            timeToChangeSlides = (timeOfChangingSlides / 100) * 20;
+        }
         slider.classList.add("slider");
         if (setDefaultMinimumSizes) {
             slider.classList.add("minWidthAndMinHeightSlider");
         }
         sliderWidth = slider.clientWidth;
         setStartingPositionsSlides();
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("centerSlideZIndex");
         setSlidesDisplay();
         if (buttonControl) {
             crateButtonControl(buttonDefaultStyles);
@@ -302,6 +306,7 @@ function createSlider(idElement, {
 
     init();
 
+
     if (slidesElementsArray.length === 0) {
         return console.log(`
         ##############################################
@@ -313,6 +318,14 @@ function createSlider(idElement, {
     //####################################
     //###############EVENTS###############
     //####################################
+
+    slider.addEventListener("touchstart", event => {
+        if (event.touches.length === 1) {
+            event.preventDefault();//Есть ошибка, при клике на margin. Она ничего не ломает и думаю можно убрать её в try catch
+            /*ТЕКСТ ОШИБКИ [Intervention] Ignored attempt to cancel a touchstart event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.*/
+        }
+    });
+
     //TOUCHMOVE
 
     if (touchmove) {
@@ -355,7 +368,7 @@ function createSlider(idElement, {
     //######################################ASYNC_CODE########################################
     //########################################################################################
 
-    setTimeout(() => {slidesElementsArray.forEach(value => {
+    setTimeout(() => {slidesElementsArray.forEach(value => {//НАЙТИ АЛЬТЕРНАТИВНОЕ РЕШЕНИЕ
         value.style.transitionDuration = `${timeToChangeSlides}ms`;
         value.style.transitionTimingFunction = transitionTimingFunctionName;
     })}, 1);
