@@ -55,20 +55,23 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
     }
 
+    function setSlidesDisplay() {
+        slidesElementsArray.forEach(value => {
+            value.classList.add("hideSlide");
+        });
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("hideSlide");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
+        //Строка функции rightSlideShift и leftSlideShift соответственно.
+        //Если в функции etSlidesDisplay оставить classList.remove, только на currentSlide, то
+        //Придется визуализировать 2 слайда в функциях rightSlideShift и leftSlideShift,
+        //соответственно, разницы нет, а так сне кажется, даже читабельней.
+    }
 
     function positioningSlides() {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `translateX(${sliderWidth}px)`;
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(0)`;
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
-    }
-
-    function setSlidesDisplay() {
-        slidesElementsArray.forEach(value => {
-            value.classList.add("displayNone");
-        });
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("displayNone");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("displayNone");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("displayNone");
     }
 
     function switchToLeftSlide() {
@@ -128,27 +131,44 @@ function createSlider(idElement, {
     function automaticSettingPictureWidth() {
         slidesElementsArray.forEach(value => {
             value.classList.add("slides");
-            value.style.width = sliderWidth + "px";
         });
-        setSlidesDisplay();
     }
 
     function crateButtonControl(defaultStyles) {
         if (defaultStyles) {
+            buttonControlElementsList.leftButtonControl = document.createElement("input");
+            buttonControlElementsList.leftButtonControl.setAttribute("type", "image");
+            buttonControlElementsList.leftButtonControl.setAttribute("src", "img/arrow.png");
+            buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
+            buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
+            buttonControlElementsList.leftButtonControl.classList.add("leftButton", "leftButtonContol");
+            slider.prepend(buttonControlElementsList.leftButtonControl);
+
+            buttonControlElementsList.rightButtonControl = document.createElement("input");
+            buttonControlElementsList.rightButtonControl.setAttribute("type", "image");
+            buttonControlElementsList.rightButtonControl.setAttribute("src", "img/arrow.png");
+            buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowRight");
+            buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow right");
+            buttonControlElementsList.rightButtonControl.classList.add("rightButton", "RightButtonContol");
+            slider.prepend(buttonControlElementsList.rightButtonControl);
+            buttonControlElementsList.pauseButtonControl = document.createElement("input");
+            buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
+            buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
+            buttonControlElementsList.pauseButtonControl.setAttribute("alt", "input pause");
+            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseNotActive");
+            slider.prepend(buttonControlElementsList.pauseButtonControl);
+
+        } else {
             let inputLeft = document.createElement("input");
-            inputLeft.setAttribute("type", "image");
-            inputLeft.setAttribute("src", "img/arrow.png");
             inputLeft.setAttribute("name", "arrowLeft");
             inputLeft.setAttribute("alt", "arrow left");
-            inputLeft.classList.add("leftButton");
+            inputLeft.setAttribute("type", "button");
             slider.prepend(inputLeft);
 
             let inputRight = document.createElement("input");
-            inputRight.setAttribute("type", "image");
-            inputRight.setAttribute("src", "img/arrow.png");
-            inputRight.setAttribute("name", "arrowRight");
-            inputRight.setAttribute("alt", "arrow right");
-            inputRight.classList.add("rightButton");
+            inputRight.setAttribute("type", "button");
+            inputRight.setAttribute("name", "arrowLeft");
+            inputRight.setAttribute("alt", "arrow left");
             slider.prepend(inputRight);
 
             let inputPause = document.createElement("input");
@@ -157,21 +177,6 @@ function createSlider(idElement, {
             inputPause.setAttribute("alt", "input pause");
             inputPause.classList.add("inputPauseNotActive");
             slider.prepend(inputPause);
-
-
-        } else {
-            let inputLeft = document.createElement("input");
-            inputLeft.setAttribute("name", "arrowLeft");
-            inputLeft.setAttribute("alt", "arrow left");
-            inputLeft.setAttribute("type", "button");
-
-            let inputRight = document.createElement("input");
-            inputRight.setAttribute("type", "button");
-            inputRight.setAttribute("name", "arrowLeft");
-            inputRight.setAttribute("alt", "arrow left");
-
-            slider.prepend(inputLeft);
-            slider.prepend(inputRight);
         }
     }
 
@@ -187,25 +192,20 @@ function createSlider(idElement, {
     }
 
     function autoplayReset(timeOfChangingSlides) {
-        if (!autoplay) {
-            return;
-        }
         clearInterval(autolpayTimer);
         startAutoplay(timeOfChangingSlides);
     }
 
     function pauseSwitch() {
         if (!autoplay) {
-            stopAutoplay();
-            startAutoplay(timeOfChangingSlides);
-            slider.querySelector("input[name='pause']").classList.add("inputPauseNotActive");
-            slider.querySelector("input[name='pause']").classList.remove("inputPauseActive");
+            autoplayReset(timeOfChangingSlides);
+            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseNotActive");
+            buttonControlElementsList.pauseButtonControl.classList.remove("inputPauseActive");
         } else {
             stopAutoplay();
-            slider.querySelector("input[name='pause']").classList.add("inputPauseActive");
-            slider.querySelector("input[name='pause']").classList.remove("inputPauseNotActive");
+            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseActive");
+            buttonControlElementsList.pauseButtonControl.classList.remove("inputPauseNotActive");
         }
-
         autoplay = !autoplay
     }
 
@@ -226,29 +226,46 @@ function createSlider(idElement, {
     function pseudoTouchMoveEnd() {
         hasPseudoTouchMouse = false;
         swipeLength = 0;
-        autoplayReset(timeOfChangingSlides);
+        if (autoplay) {
+            autoplayReset(timeOfChangingSlides);
+        }
     }
 
     function rightSliderShift() {
         switchSlideBlocked = true;
         switchToRightSlide();
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("displayNone");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("hideSlide");
         setTimeout( () => {
             switchSlideBlocked = false;
-            pseudoTouchMoveEnd();
-            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("displayNone");
+            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
             }, timeToChangeSlides)
     }
 
     function leftSliderShift() {
         switchSlideBlocked = true;
         switchToLeftSlide();
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("displayNone");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("hideSlide");
         setTimeout( () => {
             switchSlideBlocked = false;
-            pseudoTouchMoveEnd();
-            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("displayNone");
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
         }, timeToChangeSlides)
+    }
+
+    function init() {
+        slider.classList.add("slider");
+        if (setDefaultMinimumSizes) {
+            slider.classList.add("minWidthAndMinHeightSlider");
+        }
+        sliderWidth = slider.clientWidth;
+        setStartingPositionsSlides();
+        setSlidesDisplay();
+        if (buttonControl) {
+            crateButtonControl(buttonDefaultStyles);
+        }
+        automaticSettingPictureWidth();
+        if (autoplay) {
+            startAutoplay(timeOfChangingSlides);
+        }
     }
 
     const slider = document.getElementById(idElement);
@@ -260,50 +277,31 @@ function createSlider(idElement, {
         `);
     }
 
-    slider.classList.add("slider");
-    if (setDefaultMinimumSizes) {
-        slider.classList.add("minWidthAndMinHeightSlider");
-    }
-
     let gestureStartingPositionX = 0;
     let swipeLength = 0;
     let switchSlideBlocked = false;
     let autolpayTimer = null;
     let hasPseudoTouchMouse = false;
-    const sliderWidth = slider.clientWidth;
+    let sliderWidth = 0;
     const objectSliderVisibleSlides = {
         nextSlide: 0,
         currentSlide: 1,
         prevSlide: 2
     };
-
-    //ПРОВЕРИТЬ КОД НИЖЕ
+    const buttonControlElementsList = {
+        leftButtonControl: null,
+        rightButtonControl: null,
+        pauseButtonControl: null
+    };
 
     const slidesElementsArray = checkRequiredQuantitySliderChildren(getSlidesArray(slider));
-    setStartingPositionsSlides();
+    init();
     if (slidesElementsArray.length === 0) {
         return console.log(`
         ##############################################
         ##### container '#${idElement}' is empty #####
         ##############################################
         `);
-    }
-    setSlidesDisplay();
-
-
-    if (buttonControl) {
-        crateButtonControl(buttonDefaultStyles);
-    }
-
-    //autoWidthSlides
-    //###############
-
-    automaticSettingPictureWidth();
-
-    //###############
-
-    if (autoplay) {
-        startAutoplay(timeOfChangingSlides);
     }
 
     //###############EVENTS
@@ -331,19 +329,18 @@ function createSlider(idElement, {
     //MOUSE
 
     if (buttonControl) {
-        slider.querySelector("input[name='arrowRight']").addEventListener("click", () => {
+        buttonControlElementsList.rightButtonControl.addEventListener("click", () => {
             if (!switchSlideBlocked) {
                 leftSliderShift();
             }
         });
-        //Пока не придумал альтернативы. Можно перевести на классы думаю.
-        slider.querySelector("input[name='arrowLeft']").addEventListener("click", () => {
+        buttonControlElementsList.leftButtonControl.addEventListener("click", () => {
             if (!switchSlideBlocked) {
                 rightSliderShift();
             }
         });
         if (autoplay) {
-            slider.querySelector("input[name='pause']").addEventListener("click", pauseSwitch);
+            buttonControlElementsList.pauseButtonControl.addEventListener("click", pauseSwitch);
         }
     }
 

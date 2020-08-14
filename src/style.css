@@ -85,15 +85,12 @@
 .slides {
     position: absolute;
     pointer-events: none;
+    width: 100%;
     overflow: hidden; /*Это для div, чтобы background-image не вылазили*/
 }
 
-.displayNone {
+.hideSlide {
     display: none;
-}
-
-.displayBlock {
-    display: block;
 }
 
 /*_________________________*/
