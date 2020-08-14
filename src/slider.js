@@ -1,5 +1,10 @@
 "use strict";
 
+//Проблемы, которые я ещё не решил.
+//1) при скорости переключения слайдев, равной от 80%, от времени переключения слайдев,
+//при переключении на левый, появляется пустое пространство между слайдеми.
+//Причина не ясна )).
+
 function createSlider(idElement, {
     autoplay = true,
     timeOfChangingSlides = 5000,
@@ -10,10 +15,6 @@ function createSlider(idElement, {
     buttonDefaultStyles = true,
     setDefaultMinimumSizes = true,
 } = {}) {
-
-    if (timeOfChangingSlides < 4) {
-        timeOfChangingSlides = 4;
-    }
 
     function getSlidesArray(parent) {
         return Array.from(parent.children).map(value => {
@@ -252,6 +253,9 @@ function createSlider(idElement, {
     }
 
     function init() {
+        if (timeOfChangingSlides < 4) {
+            timeOfChangingSlides = 4;
+        }
         slider.classList.add("slider");
         if (setDefaultMinimumSizes) {
             slider.classList.add("minWidthAndMinHeightSlider");
@@ -304,8 +308,9 @@ function createSlider(idElement, {
         `);
     }
 
-    //###############EVENTS
-    //#####################
+    //####################################
+    //###############EVENTS###############
+    //####################################
     //TOUCHMOVE
 
     if (touchmove) {
@@ -344,8 +349,8 @@ function createSlider(idElement, {
         }
     }
 
-    //#########################################asyncCode######################################
     //########################################################################################
+    //######################################ASYNC_CODE########################################
     //########################################################################################
 
     setTimeout(() => {slidesElementsArray.forEach(value => {
