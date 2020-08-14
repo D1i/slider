@@ -4,7 +4,7 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -29,19 +29,16 @@
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
-    position: absolute;
+    z-index: 2;
 }
 
 .buttonShiftSlides {
     width: 30px;
     height: 60px;
     margin: 10px;
-    right: 10px;
 }
 
 .rightButton {
-    /*Пока к сожалегию, не смог придумать как реализовать кнопки на flexbox, без z-index*/
-    left: 10px;
     transform: rotate(180deg);
 }
 
@@ -49,8 +46,7 @@
     height: 40px;
     transition-duration: 0.2s;
     background-color: transparent;
-    position: absolute;
-    bottom: 10%;
+    margin: auto 0 15px 0;
 }
 
 .inputPauseNotActive {
@@ -76,11 +72,15 @@
     position: absolute;
     pointer-events: none;
     width: 100%;
-    overflow: hidden; /*Это для div, чтобы background-image не вылазили*/
+    overflow: hidden; /*Это для div*/
 }
 
 .hideSlide {
     display: none;
+}
+
+.centerSlide {
+    z-index: 1;
 }
 
 .slideShiftRight {

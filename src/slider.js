@@ -34,7 +34,7 @@ function createSlider(idElement, {
 
     function addingMissingSlides(slidesElementsArray) {
         if (slidesElementsArray.length === 0) {
-            return;
+            return null;
         }
         if (slidesElementsArray.length === 1) {
             let firstCloneElement = slidesElementsArray[0].cloneNode(true);
@@ -70,6 +70,7 @@ function createSlider(idElement, {
     function positioningSlides() {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add("centerSlide");
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
@@ -142,7 +143,7 @@ function createSlider(idElement, {
         });
     }
 
-    function createButton({type, src = null, name, alt, classList} = {}) {//Сократить, до 6 строк
+    function createButton({type, src = null, name, alt, classList = []} = {}) {//Сократить, до 6 строк
         /*src = null и проверка на null, делает так, что мы не присвоем паузе src. Так же можно
         дополнительныеклассы присваевать, вне функции, но пока решил сделать функцию универсальней*/
         const button = document.createElement("input");
@@ -210,9 +211,6 @@ function createSlider(idElement, {
     }
 
     function startAutoplay(timeOfChangingSlides) {
-        if (!autoplay) {
-            return;
-        }
         autolpayTimer = setInterval(() => rightSliderShift(), timeOfChangingSlides);
     }
 
@@ -221,7 +219,7 @@ function createSlider(idElement, {
     }
 
     function autoplayReset(timeOfChangingSlides) {
-        clearInterval(autolpayTimer);
+        stopAutoplay(autolpayTimer);
         startAutoplay(timeOfChangingSlides);
     }
 
@@ -261,20 +259,24 @@ function createSlider(idElement, {
     }
 
     function rightSliderShift() {
+        stopAutoplay();
         switchSlideBlocked = true;
         switchToRightSlide();
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("hideSlide");
         setTimeout( () => {
+            autoplayReset(timeOfChangingSlides);
             switchSlideBlocked = false;
             slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
             }, timeToChangeSlides)
     }
 
     function leftSliderShift() {
+        stopAutoplay();
         switchSlideBlocked = true;
         switchToLeftSlide();
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("hideSlide");
         setTimeout( () => {
+            autoplayReset(timeOfChangingSlides);
             switchSlideBlocked = false;
             slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
         }, timeToChangeSlides)
@@ -284,8 +286,8 @@ function createSlider(idElement, {
         if (timeOfChangingSlides < 4) {
             timeOfChangingSlides = 4;
         }
-        if (timeToChangeSlides > (timeOfChangingSlides / 100) * 20) {
-            timeToChangeSlides = (timeOfChangingSlides / 100) * 20;
+        if (timeOfChangingSlides < (timeToChangeSlides / 100) * 120) {
+            timeToChangeSlides = (timeToChangeSlides / 100) * 80;
         }
         slider.classList.add("slider");
         if (setDefaultMinimumSizes) {
@@ -322,14 +324,13 @@ function createSlider(idElement, {
     };
 
     const slidesElementsArray = addingMissingSlides(getSlidesArray(slider));
-
-    init();
-
-    if (slidesElementsArray.length === 0) {
+    if (slidesElementsArray === null) {
         return console.log ( '%c%s',
             'font-size: 16px; color: red; background-color: #ffa7a0; padding: 2px 5px; border: 1px solid #ccc; margin: 20px auto;',
             `slider | container '#${idElement}' is empty`);
     }
+
+    init();
 
     //####################################
     //###############EVENTS###############
@@ -339,6 +340,7 @@ function createSlider(idElement, {
         if (event.touches.length === 1) {
             event.preventDefault();//Есть ошибка, при клике на margin. Она ничего не ломает и думаю можно убрать её в try catch
             /*ТЕКСТ ОШИБКИ [Intervention] Ignored attempt to cancel a touchstart event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.*/
+            //НА МОБИЛЬНОЙ ВЕРСИИ, НЕВОЗМОЖНО НАЖАТЬ НА КНОПКИ КОНТРОЛЯ СЛАЙДЕРА.
         }
     });
 
@@ -351,7 +353,8 @@ function createSlider(idElement, {
         });
         slider.addEventListener("touchmove", moveSliderTouch);
         slider.addEventListener("touchend", () => {
-        swipeLength = 0
+            swipeLength = 0;
+            autoplayReset(timeOfChangingSlides);
         });
 
         //PSEUDO TOUCHMOVE
@@ -383,9 +386,8 @@ function createSlider(idElement, {
     //########################################################################################
     //######################################ASYNC_CODE########################################
     //########################################################################################
-
-    setTimeout(() => {slidesElementsArray.forEach(value => {//НАЙТИ АЛЬТЕРНАТИВНОЕ РЕШЕНИЕ
+    slidesElementsArray.forEach(value => {//НАЙТИ АЛЬТЕРНАТИВНОЕ РЕШЕНИЕ
         value.style.transitionDuration = `${timeToChangeSlides}ms`;
         value.style.transitionTimingFunction = transitionTimingFunctionName;
-    })}, 1);
+    })
 }
