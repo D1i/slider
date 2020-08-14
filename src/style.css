@@ -21,9 +21,7 @@
 /*#########################*/
 /*СТИЛИ ДЛЯ КНОПОК СЛАЙДЕРА*/
 
-.button,
-.inputPauseActive,
-.inputPauseNotActive {
+.button {
     outline: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -34,7 +32,7 @@
     position: absolute;
 }
 
-.button {
+.buttonShiftSlides {
     width: 30px;
     height: 60px;
     margin: 10px;
@@ -42,12 +40,12 @@
 }
 
 .rightButton {
+    /*Пока к сожалегию, не смог придумать как реализовать кнопки на flexbox, без z-index*/
     left: 10px;
     transform: rotate(180deg);
 }
 
-.inputPauseNotActive,
-.inputPauseActive {
+.inputPause {
     height: 40px;
     transition-duration: 0.2s;
     background-color: transparent;

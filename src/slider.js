@@ -158,21 +158,13 @@ function createSlider(idElement, {
     
     function crateButtonControl(defaultStyles) {
         if (defaultStyles) {
-            buttonControlElementsList.leftButtonControl = createButton(
-                {type: "image",
-                    src: "img/arrow.png",
-                    name: "arrowLeft",
-                    alt: "arrow left",
-                    classList: ["button"]
-                });
-            slider.append(buttonControlElementsList.leftButtonControl);
 
             buttonControlElementsList.rightButtonControl = createButton(
                 {type: "image",
                     src: "img/arrow.png",
                     name: "arrowRight",
                     alt: "arrow right",
-                    classList: ["rightButton", "button"]
+                    classList: ["rightButton", "button", "buttonShiftSlides"]
                 });
             slider.append(buttonControlElementsList.rightButtonControl);
 
@@ -180,18 +172,20 @@ function createSlider(idElement, {
                 {type: "button",
                     name: "pause",
                     alt: "input pause",
-                    classList: ["inputPauseNotActive"]
+                    classList: ["inputPauseNotActive", "inputPause", "button"]
                 });
             slider.append(buttonControlElementsList.pauseButtonControl);
+
+            buttonControlElementsList.leftButtonControl = createButton(
+                {type: "image",
+                    src: "img/arrow.png",
+                    name: "arrowLeft",
+                    alt: "arrow left",
+                    classList: ["button", "buttonShiftSlides"]
+                });
+            slider.append(buttonControlElementsList.leftButtonControl);
 
         } else {
-            buttonControlElementsList.leftButtonControl = createButton(
-                {type: "button",
-                    name: "arrowLeft",
-                    alt: "arrow left",
-                });
-            slider.append(buttonControlElementsList.leftButtonControl);
-
             buttonControlElementsList.rightButtonControl = createButton(
                 {type: "button",
                     name: "arrowRight",
@@ -205,6 +199,13 @@ function createSlider(idElement, {
                     alt: "input pause",
                 });
             slider.append(buttonControlElementsList.pauseButtonControl);
+
+            buttonControlElementsList.leftButtonControl = createButton(
+                {type: "button",
+                    name: "arrowLeft",
+                    alt: "arrow left",
+                });
+            slider.append(buttonControlElementsList.leftButtonControl);
         }
     }
 
