@@ -135,48 +135,68 @@ function createSlider(idElement, {
         });
     }
 
+    function createButton({type, src = null, name, alt, classList} = {}) {
+        const button = document.createElement("input");
+        button.setAttribute("type", type);
+        if (src !== null) {
+            button.setAttribute("src", src);
+        }
+        button.setAttribute("name", name);
+        button.setAttribute("alt", alt);
+        classList.forEach( value => {
+            button.classList.add(value);
+        });
+        return button;
+    }
+    
     function crateButtonControl(defaultStyles) {
         if (defaultStyles) {
-            buttonControlElementsList.leftButtonControl = document.createElement("input");
-            buttonControlElementsList.leftButtonControl.setAttribute("type", "image");
-            buttonControlElementsList.leftButtonControl.setAttribute("src", "img/arrow.png");
-            buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
-            buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
-            buttonControlElementsList.leftButtonControl.classList.add("button");
+            buttonControlElementsList.leftButtonControl = createButton(
+                {type: "image",
+                    src: "img/arrow.png",
+                    name: "arrowLeft",
+                    alt: "arrow left",
+                    classList: ["button"]
+                });
             slider.append(buttonControlElementsList.leftButtonControl);
 
-            buttonControlElementsList.rightButtonControl = document.createElement("input");
-            buttonControlElementsList.rightButtonControl.setAttribute("type", "image");
-            buttonControlElementsList.rightButtonControl.setAttribute("src", "img/arrow.png");
-            buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowRight");
-            buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow right");
-            buttonControlElementsList.rightButtonControl.classList.add("rightButton", "button");
+            buttonControlElementsList.rightButtonControl = createButton(
+                {type: "image",
+                    src: "img/arrow.png",
+                    name: "arrowRight",
+                    alt: "arrow right",
+                    classList: ["rightButton", "button"]
+                });
             slider.append(buttonControlElementsList.rightButtonControl);
 
-            buttonControlElementsList.pauseButtonControl = document.createElement("input");
-            buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
-            buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
-            buttonControlElementsList.pauseButtonControl.setAttribute("alt", "input pause");
-            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseNotActive");
+            buttonControlElementsList.pauseButtonControl = createButton(
+                {type: "button",
+                    name: "pause",
+                    alt: "input pause",
+                    classList: ["inputPauseNotActive"]
+                });
             slider.append(buttonControlElementsList.pauseButtonControl);
 
         } else {
-            buttonControlElementsList.leftButtonControl = document.createElement("input");
-            buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
-            buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
-            buttonControlElementsList.leftButtonControl.setAttribute("type", "button");
+            buttonControlElementsList.leftButtonControl = createButton(
+                {type: "button",
+                    name: "arrowLeft",
+                    alt: "arrow left",
+                });
             slider.append(buttonControlElementsList.leftButtonControl);
 
-            buttonControlElementsList.rightButtonControl = document.createElement("input");
-            buttonControlElementsList.rightButtonControl.setAttribute("type", "button");
-            buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowLeft");
-            buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow left");
+            buttonControlElementsList.rightButtonControl = createButton(
+                {type: "button",
+                    name: "arrowRight",
+                    alt: "arrow right",
+                });
             slider.append(buttonControlElementsList.rightButtonControl);
 
-            buttonControlElementsList.pauseButtonControl = document.createElement("input");
-            buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
-            buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
-            buttonControlElementsList.pauseButtonControl.setAttribute("alt", "input pause");
+            buttonControlElementsList.pauseButtonControl = createButton(
+                {type: "button",
+                    name: "pause",
+                    alt: "input pause",
+                });
             slider.append(buttonControlElementsList.pauseButtonControl);
         }
     }
