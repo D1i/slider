@@ -51,9 +51,13 @@ function createSlider(idElement, {
         objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
         objectSliderVisibleSlides.currentSlide = 0;
         objectSliderVisibleSlides.prevSlide = 1;
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `translateX(${sliderWidth}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(0)`;
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
+
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
+
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
     }
 
     function setSlidesDisplay() {
@@ -70,9 +74,13 @@ function createSlider(idElement, {
     }
 
     function positioningSlides() {
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `translateX(${sliderWidth}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(0)`;
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
+
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
+
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
     }
 
     function switchToLeftSlide() {

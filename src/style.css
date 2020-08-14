@@ -93,4 +93,12 @@
     display: none;
 }
 
+.slideShiftRight {
+    transform: translateX(100%);
+}
+
+.slideShiftLeft {
+    transform: translateX(-100%);
+}
+
 /*_________________________*/
