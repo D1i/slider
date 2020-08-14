@@ -34,43 +34,43 @@
     cursor: pointer;
 }
 
-.leftButton {
-    width: 30px;
-    height: 60px;
-    position: absolute;
-    right: 10px;
-}
-
+.leftButton,
 .rightButton {
     width: 30px;
     height: 60px;
     position: absolute;
+}
+
+.leftButton {
+    right: 10px;
+}
+
+.rightButton {
     left: 10px;
     transform: rotate(180deg);
 }
 
-.inputPauseNotActive {
-    transition-duration: 1s;
-    width: 10px;
+.inputPauseNotActive,
+.inputPauseActive {
     height: 40px;
+    transition-duration: 1s;
     background-color: transparent;
-    border: 0 solid transparent;
-    border-right: 5px Solid #9e9e9e;
-    border-left: 5px Solid #9e9e9e;
     position: absolute;
     bottom: 10%;
 }
 
+.inputPauseNotActive {
+    width: 10px;
+    border: 0 solid transparent;
+    border-right: 5px Solid #9e9e9e;
+    border-left: 5px Solid #9e9e9e;
+}
+
 .inputPauseActive {
-    transition-duration: 1s;
     width: 0;
-    height: 40px;
-    background-color: transparent;
     border: 20px solid transparent;
     border-right: 0 Solid transparent;
     border-left: 20px solid #9e9e9e;
-    position: absolute;
-    bottom: 10%;
     margin-right: -10px;
 }
 
