@@ -143,11 +143,13 @@ function createSlider(idElement, {
     }
 
     function createButton({type, src = null, name, alt, classList} = {}) {//Сократить, до 6 строк
+        /*src = null и проверка на null, делает так, что мы не присвоем паузе src. Так же можно
+        дополнительныеклассы присваевать, вне функции, но пока решил сделать функцию универсальней*/
         const button = document.createElement("input");
         button.setAttribute("type", type);
-        // if (src !== null) {
+        if (src !== null) {
             button.setAttribute("src", src);
-        // }
+        }
         button.setAttribute("name", name);
         button.setAttribute("alt", alt);
         classList.forEach( value => button.classList.add(value) );
