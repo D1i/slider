@@ -152,6 +152,7 @@ function createSlider(idElement, {
             buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow right");
             buttonControlElementsList.rightButtonControl.classList.add("rightButton", "RightButtonContol");
             slider.append(buttonControlElementsList.rightButtonControl);
+
             buttonControlElementsList.pauseButtonControl = document.createElement("input");
             buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
             buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
@@ -160,24 +161,23 @@ function createSlider(idElement, {
             slider.append(buttonControlElementsList.pauseButtonControl);
 
         } else {
-            let inputLeft = document.createElement("input");
-            inputLeft.setAttribute("name", "arrowLeft");
-            inputLeft.setAttribute("alt", "arrow left");
-            inputLeft.setAttribute("type", "button");
-            slider.append(inputLeft);
+            buttonControlElementsList.leftButtonControl = document.createElement("input");
+            buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
+            buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
+            buttonControlElementsList.leftButtonControl.setAttribute("type", "button");
+            slider.append(buttonControlElementsList.leftButtonControl);
 
-            let inputRight = document.createElement("input");
-            inputRight.setAttribute("type", "button");
-            inputRight.setAttribute("name", "arrowLeft");
-            inputRight.setAttribute("alt", "arrow left");
-            slider.append(inputRight);
+            buttonControlElementsList.rightButtonControl = document.createElement("input");
+            buttonControlElementsList.rightButtonControl.setAttribute("type", "button");
+            buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowLeft");
+            buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow left");
+            slider.append(buttonControlElementsList.rightButtonControl);
 
-            let inputPause = document.createElement("input");
-            inputPause.setAttribute("type", "button");
-            inputPause.setAttribute("name", "pause");
-            inputPause.setAttribute("alt", "input pause");
-            inputPause.classList.add("inputPauseNotActive");
-            slider.append(inputPause);
+            buttonControlElementsList.pauseButtonControl = document.createElement("input");
+            buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
+            buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
+            buttonControlElementsList.pauseButtonControl.setAttribute("alt", "input pause");
+            slider.append(buttonControlElementsList.pauseButtonControl);
         }
     }
 
