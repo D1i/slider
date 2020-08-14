@@ -47,19 +47,6 @@ function createSlider(idElement, {
         return slidesElementsArray;
     }
 
-    function setStartingPositionsSlides() {
-        objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
-        objectSliderVisibleSlides.currentSlide = 0;
-        objectSliderVisibleSlides.prevSlide = 1;
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
-
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
-
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
-    }
-
     function setSlidesDisplay() {
         slidesElementsArray.forEach(value => {
             value.classList.add("hideSlide");
@@ -76,11 +63,16 @@ function createSlider(idElement, {
     function positioningSlides() {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
-
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
-
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
+    }
+
+    function setStartingPositionsSlides() {
+        objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
+        objectSliderVisibleSlides.currentSlide = 0;
+        objectSliderVisibleSlides.prevSlide = 1;
+        positioningSlides();
     }
 
     function switchToLeftSlide() {
@@ -151,7 +143,7 @@ function createSlider(idElement, {
             buttonControlElementsList.leftButtonControl.setAttribute("name", "arrowLeft");
             buttonControlElementsList.leftButtonControl.setAttribute("alt", "arrow left");
             buttonControlElementsList.leftButtonControl.classList.add("leftButton", "leftButtonContol");
-            slider.prepend(buttonControlElementsList.leftButtonControl);
+            slider.append(buttonControlElementsList.leftButtonControl);
 
             buttonControlElementsList.rightButtonControl = document.createElement("input");
             buttonControlElementsList.rightButtonControl.setAttribute("type", "image");
@@ -159,33 +151,33 @@ function createSlider(idElement, {
             buttonControlElementsList.rightButtonControl.setAttribute("name", "arrowRight");
             buttonControlElementsList.rightButtonControl.setAttribute("alt", "arrow right");
             buttonControlElementsList.rightButtonControl.classList.add("rightButton", "RightButtonContol");
-            slider.prepend(buttonControlElementsList.rightButtonControl);
+            slider.append(buttonControlElementsList.rightButtonControl);
             buttonControlElementsList.pauseButtonControl = document.createElement("input");
             buttonControlElementsList.pauseButtonControl.setAttribute("type", "button");
             buttonControlElementsList.pauseButtonControl.setAttribute("name", "pause");
             buttonControlElementsList.pauseButtonControl.setAttribute("alt", "input pause");
             buttonControlElementsList.pauseButtonControl.classList.add("inputPauseNotActive");
-            slider.prepend(buttonControlElementsList.pauseButtonControl);
+            slider.append(buttonControlElementsList.pauseButtonControl);
 
         } else {
             let inputLeft = document.createElement("input");
             inputLeft.setAttribute("name", "arrowLeft");
             inputLeft.setAttribute("alt", "arrow left");
             inputLeft.setAttribute("type", "button");
-            slider.prepend(inputLeft);
+            slider.append(inputLeft);
 
             let inputRight = document.createElement("input");
             inputRight.setAttribute("type", "button");
             inputRight.setAttribute("name", "arrowLeft");
             inputRight.setAttribute("alt", "arrow left");
-            slider.prepend(inputRight);
+            slider.append(inputRight);
 
             let inputPause = document.createElement("input");
             inputPause.setAttribute("type", "button");
             inputPause.setAttribute("name", "pause");
             inputPause.setAttribute("alt", "input pause");
             inputPause.classList.add("inputPauseNotActive");
-            slider.prepend(inputPause);
+            slider.append(inputPause);
         }
     }
 
