@@ -8,8 +8,7 @@ function createSlider(idElement, {
     buttonControl = true,
     touchmove = true,
     buttonDefaultStyles = true,
-    minSliderWidth = 500,
-    minSliderHeight = 250,
+    setDefaultMinimumSizes = true,
 } = {}) {
 
     if (timeOfChangingSlides < 4) {
@@ -17,17 +16,18 @@ function createSlider(idElement, {
     }
 
     function getSlidesArray(parent) {
-        const slidesElementsArray = Array.from(parent.children).map(value => {
+        return Array.from(parent.children).map(value => {
             if (value.tagName !== "INPUT") {
-                value.style.pointerEvents = "none";
+                value.classList.add("slides");
                 return value;
             }
         });
+    }
 
+    function checkRequiredQuantitySliderChildren(slidesElementsArray) {
         if (slidesElementsArray.length === 0) {
             return;
         }
-
         if (slidesElementsArray.length === 1) {
             let firstCloneElement = slidesElementsArray[0].cloneNode(true);
             let secondCloneElement = firstCloneElement.cloneNode(true);
@@ -43,41 +43,32 @@ function createSlider(idElement, {
                 slider.append(cloneElement);
             });
         }
-        if (slidesElementsArray.length === 3) {
-            //Пока что другого решения не нашел, только если переписывать почти весь код
-            let firstCloneElement = slidesElementsArray[0].cloneNode(true);
-            let secondCloneElement = slidesElementsArray[1].cloneNode(true);
-            let thirdCloneElement = slidesElementsArray[2].cloneNode(true);
-            slidesElementsArray.push(firstCloneElement);
-            slider.append(firstCloneElement);
-            slidesElementsArray.push(secondCloneElement);
-            slider.append(secondCloneElement);
-            slidesElementsArray.push(thirdCloneElement);
-            slider.append(thirdCloneElement);
-        }
+        return slidesElementsArray;
+    }
+
+    function setStartingPositionsSlides() {
         objectSliderVisibleSlides.nextSlide = slidesElementsArray.length - 1;
         objectSliderVisibleSlides.currentSlide = 0;
         objectSliderVisibleSlides.prevSlide = 1;
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `translateX(${sliderWidth}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(${0}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth }px)`;
-
-        return slidesElementsArray;
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(0)`;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
     }
+
 
     function positioningSlides() {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.transform = `translateX(${sliderWidth}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(${0}px)`;
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth }px)`;
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.transform = `translateX(0)`;
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.transform = `translateX(${-sliderWidth}px)`;
     }
 
     function setSlidesDisplay() {
-        slidesElementsArray.forEach(value => {value.style.display = "none";
+        slidesElementsArray.forEach(value => {
+            value.classList.add("displayNone");
         });
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].style.display = "block";
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].style.display = "block";
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].style.display = "block";
-
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("displayNone");
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("displayNone");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("displayNone");
     }
 
     function switchToLeftSlide() {
@@ -116,11 +107,6 @@ function createSlider(idElement, {
         }
         setSlidesDisplay();
         positioningSlides();
-    }
-
-    function clearTimerList() {
-        timerList.forEach((value)=> clearInterval(value));
-        timerList = [];
     }
 
     function moveSliderTouch(event) {
@@ -246,18 +232,22 @@ function createSlider(idElement, {
     function rightSliderShift() {
         switchSlideBlocked = true;
         switchToRightSlide();
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("displayNone");
         setTimeout( () => {
             switchSlideBlocked = false;
             pseudoTouchMoveEnd();
+            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("displayNone");
             }, timeToChangeSlides)
     }
 
     function leftSliderShift() {
         switchSlideBlocked = true;
         switchToLeftSlide();
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("displayNone");
         setTimeout( () => {
             switchSlideBlocked = false;
             pseudoTouchMoveEnd();
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("displayNone");
         }, timeToChangeSlides)
     }
 
@@ -267,20 +257,20 @@ function createSlider(idElement, {
         #########################################
         ##### id ${idElement} does not exist ####
         #########################################
-        `)
+        `);
     }
 
-    slider.style.minWidth = minSliderWidth + "px";
-    slider.style.minHeight = minSliderHeight + "px";
     slider.classList.add("slider");
+    if (setDefaultMinimumSizes) {
+        slider.classList.add("minWidthAndMinHeightSlider");
+    }
 
-    const sliderWidth = slider.clientWidth;
     let gestureStartingPositionX = 0;
     let swipeLength = 0;
     let switchSlideBlocked = false;
     let autolpayTimer = null;
     let hasPseudoTouchMouse = false;
-    let timerList = [];
+    const sliderWidth = slider.clientWidth;
     const objectSliderVisibleSlides = {
         nextSlide: 0,
         currentSlide: 1,
@@ -289,7 +279,8 @@ function createSlider(idElement, {
 
     //ПРОВЕРИТЬ КОД НИЖЕ
 
-    const slidesElementsArray = getSlidesArray(slider);
+    const slidesElementsArray = checkRequiredQuantitySliderChildren(getSlidesArray(slider));
+    setStartingPositionsSlides();
     if (slidesElementsArray.length === 0) {
         return console.log(`
         ##############################################
@@ -322,7 +313,6 @@ function createSlider(idElement, {
     if (touchmove) {
         slider.addEventListener("touchstart", event => {
             gestureStartingPositionX = event.touches[0].clientX;
-            clearTimerList();
             stopAutoplay();
         });
         slider.addEventListener("touchmove", moveSliderTouch);

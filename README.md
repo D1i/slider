@@ -50,6 +50,13 @@
     createSlider("slider", { buttonDefaultStyles: true });
 ```
 
+`setDefaultMinimumSizes` (boolean) - указывае, стоит ли указывать css клас с размерами минимальными размерами по умолчанию (min-width: 500px; min-height: 250px;).
+Рекомендуется отключать, если вы собиратесь назначить слайдеру свои минимальные размеры и/или ваши размеры слайдера меньше (width: 500px; height: 250px;).
+Значение по умолчанию: true.
+```JS
+    createSlider("slider", { setDefaultMinimumSizes: true });
+```
+
 ## Использование слайдера.
 Для работы слайдера, необходимо подключить слайдер по пути: "/src/slider.js" и стили по пути: "/src/style.css". Слайдеру необходимо задать размеры через ваши стили.
 Для использования слайдера, необходимо создать контейнер div и поместить в него img и/или div.
@@ -63,6 +70,7 @@
         buttonControl: false,
         touchmove: true,
         buttonDefaultStyles: true,
+        setDefaultMinimumSizes: true
     });
     createSlider("secondSlider");
 ```

@@ -8,5 +8,6 @@ createSlider("firstSlider", {
     buttonControl: false,
     touchmove: true,
     buttonDefaultStyles: true,
+    setDefaultMinimumSizes: true,
 });
 createSlider("secondSlider");

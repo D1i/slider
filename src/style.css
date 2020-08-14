@@ -13,6 +13,11 @@
     user-select: none;
 }
 
+.minWidthAndMinHeightSlider {
+    min-width: 500px;
+    min-height: 250px;
+}
+
 /*_________________________*/
 /*#########################*/
 /*СТИЛИ ДЛЯ КНОПОК СЛАЙДЕРА*/
@@ -79,7 +84,16 @@
 
 .slides {
     position: absolute;
-    overflow: hidden;
+    pointer-events: none;
+    overflow: hidden; /*Это для div, чтобы background-image не вылазили*/
+}
+
+.displayNone {
+    display: none;
+}
+
+.displayBlock {
+    display: block;
 }
 
 /*_________________________*/
