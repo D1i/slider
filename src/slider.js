@@ -16,6 +16,13 @@ function createSlider(idElement, {
     setDefaultMinimumSizes = true,
 } = {}) {
 
+    const slider = document.getElementById(idElement);
+    if (slider === null) {
+        return console.log ( '%c%s',
+            'font-size: 16px; color: red; background-color: #ffa7a0; padding: 2px 5px; border: 1px solid #ccc; margin: 20px auto;',
+            `slider | id ${idElement} does not exist` );
+    }
+
     function getSlidesArray(parent) {
         return Array.from(parent.children).map(value => {
             if (value.tagName !== "INPUT") {
@@ -25,7 +32,7 @@ function createSlider(idElement, {
         });
     }
 
-    function checkRequiredQuantitySliderChildren(slidesElementsArray) {
+    function addingMissingSlides(slidesElementsArray) {
         if (slidesElementsArray.length === 0) {
             return;
         }
@@ -135,17 +142,15 @@ function createSlider(idElement, {
         });
     }
 
-    function createButton({type, src = null, name, alt, classList} = {}) {
+    function createButton({type, src = null, name, alt, classList} = {}) {//Сократить, до 6 строк
         const button = document.createElement("input");
         button.setAttribute("type", type);
-        if (src !== null) {
+        // if (src !== null) {
             button.setAttribute("src", src);
-        }
+        // }
         button.setAttribute("name", name);
         button.setAttribute("alt", alt);
-        classList.forEach( value => {
-            button.classList.add(value);
-        });
+        classList.forEach( value => button.classList.add(value) );
         return button;
     }
     
@@ -296,15 +301,6 @@ function createSlider(idElement, {
         }
     }
 
-    const slider = document.getElementById(idElement);
-    if (slider === null) {
-        return console.log(`
-        #########################################
-        ##### id ${idElement} does not exist ####
-        #########################################
-        `);
-    }
-
     let gestureStartingPositionX = 0;
     let swipeLength = 0;
     let switchSlideBlocked = false;
@@ -322,17 +318,14 @@ function createSlider(idElement, {
         pauseButtonControl: null
     };
 
-    const slidesElementsArray = checkRequiredQuantitySliderChildren(getSlidesArray(slider));
+    const slidesElementsArray = addingMissingSlides(getSlidesArray(slider));
 
     init();
 
-
     if (slidesElementsArray.length === 0) {
-        return console.log(`
-        ##############################################
-        ##### container '#${idElement}' is empty #####
-        ##############################################
-        `);
+        return console.log ( '%c%s',
+            'font-size: 16px; color: red; background-color: #ffa7a0; padding: 2px 5px; border: 1px solid #ccc; margin: 20px auto;',
+            `slider | container '#${idElement}' is empty`);
     }
 
     //####################################
