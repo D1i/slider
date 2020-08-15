@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Демонстрация</title>
     <link rel="stylesheet" href="style.css">
-    <script src="../src/slider.js"></script>
+    <script src="../dist/dist.js"></script>
 </head>
 <body>
 <div id="firstSlider">
@@ -23,6 +23,20 @@
     <div class="pseudo-img"></div>
     <img src="https://s1.1zoom.me/big3/965/Planets_Starship_533662_2000x1000.jpg" alt="космический корабль летит к планете">
 </div>
-<script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        createSlider("firstSlider", {
+            autoplay: false,
+            timeOfChangingSlides: 2000,
+            timeToChangeSlides: 500,
+            transitionTimingFunctionName: "ease-in",
+            buttonControl: false,
+            touchmove: true,
+            buttonDefaultStyles: true,
+            setDefaultMinimumSizes: true
+        });
+        createSlider("secondSlider");
+    })
+</script>
 </body>
 </html>
