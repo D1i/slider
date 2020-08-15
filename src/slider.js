@@ -2,7 +2,7 @@
 
 import gettingStartedWithDOM from './gettingStartedWithDOM.js';
 
-
+import styles from './style.css';
 
 function createSlider(idElement, {
     autoplay = true,
@@ -20,25 +20,25 @@ function createSlider(idElement, {
         slidesElementsArray,
         objectSliderVisibleSlides,
         buttonControlElementsList,
-    ] = gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles);
+    ] = gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles,);
     positioningSlides();
 
     function setSlidesDisplay() {
         slidesElementsArray.forEach(value => {
-            value.classList.add("hideSlide");
+            value.classList.add(styles.hideSlide);
         });
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("hideSlide");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove(styles.hideSlide);
     }
 
     function positioningSlides() {
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("slideShiftRight");
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("slideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add("centerSlide");
-        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("slideShiftRight", "slideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftLeft");
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("slideShiftRight");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add(styles.slideShiftRight);
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove(styles.slideShiftLeft);
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.add(styles.centerSlide);
+        slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove(styles.slideShiftRight, styles.slideShiftLeft);
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add(styles.slideShiftLeft);
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add(styles.slideShiftRight);
     }
 
     function switchToLeftSlide() {
@@ -117,12 +117,12 @@ function createSlider(idElement, {
     function pauseSwitch() {
         if (!autoplay) {
             autoplayReset(timeOfChangingSlides);
-            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseNotActive");
-            buttonControlElementsList.pauseButtonControl.classList.remove("inputPauseActive");
+            buttonControlElementsList.pauseButtonControl.classList.add(styles.inputPauseNotActive);
+            buttonControlElementsList.pauseButtonControl.classList.remove(styles.inputPauseActive);
         } else {
             stopAutoplay();
-            buttonControlElementsList.pauseButtonControl.classList.add("inputPauseActive");
-            buttonControlElementsList.pauseButtonControl.classList.remove("inputPauseNotActive");
+            buttonControlElementsList.pauseButtonControl.classList.add(styles.inputPauseActive);
+            buttonControlElementsList.pauseButtonControl.classList.remove(styles.inputPauseNotActive);
         }
         autoplay = !autoplay
     }
@@ -153,11 +153,11 @@ function createSlider(idElement, {
         stopAutoplay();
         switchSlideBlocked = true;
         switchToRightSlide();
-        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add("hideSlide");
+        slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.add(styles.hideSlide);
         setTimeout( () => {
             autoplayReset(timeOfChangingSlides);
             switchSlideBlocked = false;
-            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
+            slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove(styles.hideSlide);
             }, timeToChangeSlides)
     }
 
@@ -165,11 +165,11 @@ function createSlider(idElement, {
         stopAutoplay();
         switchSlideBlocked = true;
         switchToLeftSlide();
-        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add("hideSlide");
+        slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.add(styles.hideSlide);
         setTimeout( () => {
             autoplayReset(timeOfChangingSlides);
             switchSlideBlocked = false;
-            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
+            slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove(styles.hideSlide);
         }, timeToChangeSlides)
     }
 

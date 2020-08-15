@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="50" viewBox="0 0 26 50">
+  <defs>
+    <clipPath id="clip-arrow">
+      <rect width="26" height="50"/>
+    </clipPath>
+  </defs>
+  <g id="arrow" clip-path="url(#clip-arrow)">
+    <rect width="26" height="50" fill="rgba(255,255,255,0)"/>
+    <path id="Контур_1" data-name="Контур 1" d="M10.665,5.026,33.873,28.234,10.665,51.442" transform="translate(-9.502 -4)" fill="none" stroke="#707070" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

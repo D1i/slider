@@ -1,5 +1,9 @@
 "use strict";
 
+import arrowOfButton from './arrow.svg'
+
+import styles from './style.css';
+
 function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles) {
 
     const slider = document.getElementById(idElement);
@@ -12,7 +16,7 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
     function getSlidesArray(parent) {
         return Array.from(parent.children).map(value => {
             if (value.tagName !== "INPUT") {
-                value.classList.add("slides");
+                value.classList.add(styles.slides);
                 return value;
             }
         });
@@ -46,16 +50,17 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
         objectSliderVisibleSlides.prevSlide = 1;
     }
 
-    function createButton({type, src = null, name, alt, classList = []} = {}) {//Сократить, до 6 строк
-        /*src = null и проверка на null, делает так, что мы не присвоем паузе src. Так же можно
-        дополнительныеклассы присваевать, вне функции, но пока решил сделать функцию универсальней*/
-        const button = document.createElement("input");
-        button.setAttribute("type", type);
-        if (src !== null) {
-            button.setAttribute("src", src);
+    function createButton({type, buttonInnerNode = null, name, alt, classList = []} = {}) {
+        let button = null;
+        if (buttonInnerNode === null) {
+            button = document.createElement("input");
+            button.setAttribute("type", type);
+            button.setAttribute("name", name);
+        } else {
+            button = document.createElement("div");
+            button.setAttribute("name", `PSEUDO_BUTTON ${name}`);
+            button.innerHTML = arrowOfButton;
         }
-        button.setAttribute("name", name);
-        button.setAttribute("alt", alt);
         classList.forEach(value => button.classList.add(value));
         return button;
     }
@@ -65,11 +70,11 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
 
             buttonControlElementsList.rightButtonControl = createButton(
                 {
-                    type: "image",
-                    src: "img/arrow.png",
+                    type: "button",
+                    buttonInnerNode: arrowOfButton,
                     name: "arrowRight",
                     alt: "arrow right",
-                    classList: ["rightButton", "button", "buttonShiftSlides"]
+                    classList: [styles.rightButton, styles.button, styles.buttonShiftSlides]
                 });
             slider.append(buttonControlElementsList.rightButtonControl);
 
@@ -78,17 +83,17 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
                     type: "button",
                     name: "pause",
                     alt: "input pause",
-                    classList: ["inputPauseNotActive", "inputPause", "button"]
+                    classList: [styles.inputPauseNotActive, styles.inputPause, styles.button]
                 });
             slider.append(buttonControlElementsList.pauseButtonControl);
 
             buttonControlElementsList.leftButtonControl = createButton(
                 {
-                    type: "image",
-                    src: "img/arrow.png",
+                    type: "button",
+                    buttonInnerNode: arrowOfButton,
                     name: "arrowLeft",
                     alt: "arrow left",
-                    classList: ["button", "buttonShiftSlides"]
+                    classList: [styles.button, styles.buttonShiftSlides]
                 });
             slider.append(buttonControlElementsList.leftButtonControl);
 
@@ -121,7 +126,7 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
 
     function automaticSettingPictureWidth() {
         slidesElementsArray.forEach(value => {
-            value.classList.add("slides");
+            value.classList.add(styles.slides);
         });
     }
 
@@ -133,9 +138,9 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
             `slider | container '#${idElement}' is empty`);
     }
 
-    slider.classList.add("slider");
+    slider.classList.add(styles.slider);
     if (setDefaultMinimumSizes) {
-        slider.classList.add("minWidthAndMinHeightSlider");
+        slider.classList.add(styles.minWidthAndMinHeightSlider);
     }
     const sliderWidth = slider.clientWidth;
 
