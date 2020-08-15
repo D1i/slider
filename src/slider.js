@@ -1,10 +1,5 @@
 "use strict";
 
-//Проблемы, которые я ещё не решил.
-//1) при скорости переключения слайдев, равной от 80%, от времени переключения слайдев,
-//при переключении на левый, появляется пустое пространство между слайдеми.
-//Причина не ясна )).
-
 function createSlider(idElement, {
     autoplay = true,
     timeOfChangingSlides = 5000,
@@ -61,10 +56,6 @@ function createSlider(idElement, {
         slidesElementsArray[objectSliderVisibleSlides.nextSlide].classList.remove("hideSlide");
         slidesElementsArray[objectSliderVisibleSlides.currentSlide].classList.remove("hideSlide");
         slidesElementsArray[objectSliderVisibleSlides.prevSlide].classList.remove("hideSlide");
-        //Строка функции rightSlideShift и leftSlideShift соответственно.
-        //Если в функции etSlidesDisplay оставить classList.remove, только на currentSlide, то
-        //Придется визуализировать 2 слайда в функциях rightSlideShift и leftSlideShift,
-        //соответственно, разницы нет, а так сне кажется, даже читабельней.
     }
 
     function positioningSlides() {
@@ -134,6 +125,13 @@ function createSlider(idElement, {
         }
         if (swipeLength < -sliderWidth / 3) {
             rightSliderShift();
+        }
+    }
+
+    function touchScrollBlocker(event) {
+        if (event.touches.length === 1) {
+            event.preventDefault();//Есть ошибка, при клике на margin. Она ничего не ломает и думаю можно убрать её в try catch
+            /*ТЕКСТ ОШИБКИ [Intervention] Ignored attempt to cancel a touchstart event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.*/
         }
     }
 
@@ -304,6 +302,11 @@ function createSlider(idElement, {
         if (autoplay) {
             startAutoplay(timeOfChangingSlides);
         }
+
+        slidesElementsArray.forEach(value => {
+            value.style.transitionDuration = `${timeToChangeSlides}ms`;
+            value.style.transitionTimingFunction = transitionTimingFunctionName;
+        })
     }
 
     let gestureStartingPositionX = 0;
@@ -332,20 +335,6 @@ function createSlider(idElement, {
 
     init();
 
-    //####################################
-    //###############EVENTS###############
-    //####################################
-
-    slider.addEventListener("touchstart", event => {
-        if (event.touches.length === 1) {
-            event.preventDefault();//Есть ошибка, при клике на margin. Она ничего не ломает и думаю можно убрать её в try catch
-            /*ТЕКСТ ОШИБКИ [Intervention] Ignored attempt to cancel a touchstart event with cancelable=false, for example because scrolling is in progress and cannot be interrupted.*/
-            //НА МОБИЛЬНОЙ ВЕРСИИ, НЕВОЗМОЖНО НАЖАТЬ НА КНОПКИ КОНТРОЛЯ СЛАЙДЕРА.
-        }
-    });
-
-    //TOUCHMOVE
-
     if (touchmove) {
         slider.addEventListener("touchstart", event => {
             gestureStartingPositionX = event.touches[0].clientX;
@@ -357,15 +346,13 @@ function createSlider(idElement, {
             autoplayReset(timeOfChangingSlides);
         });
 
-        //PSEUDO TOUCHMOVE
+        slider.addEventListener("touchmove", touchScrollBlocker);
 
         slider.addEventListener("mousedown", pseudoTouchMoveStart);
         slider.addEventListener("mousemove", pseudoTouchMove);
         slider.addEventListener("mouseup", pseudoTouchMoveEnd);
         slider.addEventListener("mouseleave", pseudoTouchMoveEnd);
     }
-
-    //MOUSE
 
     if (buttonControl) {
         buttonControlElementsList.rightButtonControl.addEventListener("click", () => {
@@ -382,12 +369,4 @@ function createSlider(idElement, {
             buttonControlElementsList.pauseButtonControl.addEventListener("click", pauseSwitch);
         }
     }
-
-    //########################################################################################
-    //######################################ASYNC_CODE########################################
-    //########################################################################################
-    slidesElementsArray.forEach(value => {//НАЙТИ АЛЬТЕРНАТИВНОЕ РЕШЕНИЕ
-        value.style.transitionDuration = `${timeToChangeSlides}ms`;
-        value.style.transitionTimingFunction = transitionTimingFunctionName;
-    })
 }
