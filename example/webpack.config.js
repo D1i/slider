@@ -1,18 +1,15 @@
 const path = require("path");
 
 module.exports = {
-    context: path.resolve(__dirname, "src"),
-    entry: "slider.js",
+    context: path.resolve(__dirname),
+    entry: "script.js",
     devtool: "inline-source-map",
     output: {
-        filename: "dist.js",
-        path: path.resolve(__dirname, "dist"),
-        library: "mySlider",
-        libraryTarget: "this",
-        libraryExport: "default"
+        filename: "bundle.js",
+        path: path.resolve(__dirname),
     },
     resolve: {
-        modules: [path.resolve(__dirname, "src")],
+        modules: [path.resolve(__dirname)],
         extensions: [".js"],
     },
     module: {

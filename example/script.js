@@ -1,6 +1,8 @@
 "use strict";
 
-createSlider("firstSlider", {
+import mySlider from "../dist/dist.js";
+
+mySlider("firstSlider", {
     autoplay: false,
     timeOfChangingSlides: 2000,
     timeToChangeSlides: 500,
@@ -10,4 +12,4 @@ createSlider("firstSlider", {
     buttonDefaultStyles: true,
     setDefaultMinimumSizes: true
 });
-createSlider("secondSlider");
+mySlider("secondSlider");
