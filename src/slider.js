@@ -15,12 +15,12 @@ function createSlider(idElement, {
     setDefaultMinimumSizes = true,
 } = {}) {
 
-    let [slider,
+    const [slider,
         sliderWidth,
         slidesElementsArray,
         objectSliderVisibleSlides,
         buttonControlElementsList,
-    ] = gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles,);
+    ] = gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles);
     positioningSlides();
 
     function setSlidesDisplay() {
