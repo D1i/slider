@@ -21,7 +21,7 @@ function createSlider(idElement, {
 
     function setSlidesDisplay() {
         slidesElementsArray.forEach(value => {
-            // value.classList.add(styles.hideSlide);
+            value.classList.add(styles.hideSlide);
         });
         console.log(slidesElementsArray)
         slidesElementsArray[objectSliderVisibleSlides.getNext].classList.remove(styles.hideSlide);

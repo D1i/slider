@@ -2,7 +2,7 @@
 
 import mySlider from "Dist/dist";
 
-createSlider("firstSlider", {
+mySlider("firstSlider", {
     autoplay: false,
     timeOfChangingSlides: 2000,
     timeToChangeSlides: 500,
@@ -12,4 +12,4 @@ createSlider("firstSlider", {
     buttonDefaultStyles: true,
     setDefaultMinimumSizes: true
 });
-createSlider("secondSlider");
+mySlider("secondSlider");

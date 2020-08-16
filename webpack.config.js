@@ -7,7 +7,7 @@ module.exports = {
     output: {
         filename: "dist.js",
         path: path.resolve(__dirname, "dist"),
-        library: "createSlider",
+        library: "mySlider",
         libraryTarget: "this",
         libraryExport: "default"
     },
