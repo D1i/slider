@@ -8,9 +8,10 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
 
     const slider = document.getElementById(idElement);
     if (slider === null) {
-        return console.log ( '%c%s',
+        console.log ( '%c%s',
             'font-size: 16px; color: red; background-color: #ffa7a0; padding: 2px 5px; border: 1px solid #ccc; margin: 20px auto;',
             `slider | id ${idElement} does not exist` );
+        return [null];
     }
 
     function getSlidesArray(parent) {
@@ -133,9 +134,10 @@ function gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl,
 
     const slidesElementsArray = addingMissingSlides(getSlidesArray(slider));
     if (slidesElementsArray === null) {
-        return console.log ( '%c%s',
+         console.log ( '%c%s',
             'font-size: 16px; color: red; background-color: #ffa7a0; padding: 2px 5px; border: 1px solid #ccc; margin: 20px auto;',
             `slider | container '#${idElement}' is empty`);
+        return [null];
     }
 
     slider.classList.add(styles.slider);

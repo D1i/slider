@@ -21,6 +21,9 @@ function createSlider(idElement, {
         objectSliderVisibleSlides,
         buttonControlElementsList,
     ] = gettingStartedWithDOM(idElement, setDefaultMinimumSizes, buttonControl, buttonDefaultStyles);
+    if (slider === null) {
+        return;
+    }
     positioningSlides();
 
     function setSlidesDisplay() {
