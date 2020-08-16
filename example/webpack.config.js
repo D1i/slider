@@ -11,6 +11,9 @@ module.exports = {
     resolve: {
         modules: [path.resolve(__dirname)],
         extensions: [".js"],
+        alias: {
+            Dist: path.resolve(__dirname, "../dist/")
+        }
     },
     module: {
         rules: [
