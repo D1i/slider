@@ -7,13 +7,13 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname),
+        library: "mySlider",
+        libraryTarget: "this",
+        libraryExport: "default"
     },
     resolve: {
         modules: [path.resolve(__dirname)],
         extensions: [".js"],
-        alias: {
-            Dist: path.resolve(__dirname, "../dist/")
-        }
     },
     module: {
         rules: [
@@ -23,7 +23,7 @@ module.exports = {
                 use: [{
                     loader: "babel-loader",
                     options: {
-                        presets: [ "env" ]
+                        presets: ["@babel/preset-env"],
                     }
                 }]
             },

@@ -1,5 +1,5 @@
 "use strict";
-
+//Периименовать файл, в index.js
 import getDOMDate from './getDOMDate.js';
 import addingMissingSlides from './addingMissingSlides.js';
 import addButtonControl from './addButtonControl.js';
@@ -23,7 +23,6 @@ function createSlider(idElement, {
         slidesElementsArray.forEach(value => {
             value.classList.add(styles.hideSlide);
         });
-        console.log(slidesElementsArray)
         slidesElementsArray[objectSliderVisibleSlides.getNext].classList.remove(styles.hideSlide);
         slidesElementsArray[objectSliderVisibleSlides.getCurrent].classList.remove(styles.hideSlide);
         slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.remove(styles.hideSlide);
@@ -144,6 +143,7 @@ function createSlider(idElement, {
         }, timeToChangeSlides)
     }
 
+    //Убрать в init все, что запускается разу, в том числе и создание переменных.
     function init() {
         if (timeOfChangingSlides < 4) {
             timeOfChangingSlides = 4;

@@ -26,6 +26,7 @@ function getDOMDate(idElement) {
         return {hasError: true};
     }
 
+    //В отдельный файл. Оставить, только _currentSlide
     const objectSliderVisibleSlides  = {
         _nextSlide: slidesElementsArray.length - 1,
         _currentSlide: 0,
