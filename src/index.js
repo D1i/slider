@@ -1,6 +1,7 @@
 "use strict";
 //Периименовать файл, в index.js
 import getDOMDate from './getDOMDate.js';
+import createObjectSliderVisibleSlides from "./createObjectSliderVisibleSlides.js";
 import addingMissingSlides from './addingMissingSlides.js';
 import addButtonControl from './addButtonControl.js';
 import setSliderStyles from './setSliderStyles.js';
@@ -23,28 +24,28 @@ function createSlider(idElement, {
         slidesElementsArray.forEach(value => {
             value.classList.add(styles.hideSlide);
         });
-        slidesElementsArray[objectSliderVisibleSlides.getNext].classList.remove(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.getNext()].classList.remove(styles.hideSlide);
         slidesElementsArray[objectSliderVisibleSlides.getCurrent].classList.remove(styles.hideSlide);
-        slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.remove(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.getPrev()].classList.remove(styles.hideSlide);
     }
 
     function positioningSlides() {
-        slidesElementsArray[objectSliderVisibleSlides.getNext].classList.add(styles.slideShiftRight);
-        slidesElementsArray[objectSliderVisibleSlides.getNext].classList.remove(styles.slideShiftLeft);
+        slidesElementsArray[objectSliderVisibleSlides.getNext()].classList.add(styles.slideShiftRight);
+        slidesElementsArray[objectSliderVisibleSlides.getNext()].classList.remove(styles.slideShiftLeft);
         slidesElementsArray[objectSliderVisibleSlides.getCurrent].classList.add(styles.centerSlide);
         slidesElementsArray[objectSliderVisibleSlides.getCurrent].classList.remove(styles.slideShiftRight, styles.slideShiftLeft);
-        slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.add(styles.slideShiftLeft);
-        slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.add(styles.slideShiftRight);
+        slidesElementsArray[objectSliderVisibleSlides.getPrev()].classList.add(styles.slideShiftLeft);
+        slidesElementsArray[objectSliderVisibleSlides.getPrev()].classList.add(styles.slideShiftRight);
     }
 
     function switchToLeftSlide() {
-        objectSliderVisibleSlides.goNext();
+        objectSliderVisibleSlides.goPrev();
         setSlidesDisplay();
         positioningSlides();
     }
 
     function switchToRightSlide() {
-        objectSliderVisibleSlides.goPrev();
+        objectSliderVisibleSlides.goNext();
         setSlidesDisplay();
         positioningSlides();
     }
@@ -123,11 +124,13 @@ function createSlider(idElement, {
         stopAutoplay();
         switchSlideBlocked = true;
         switchToRightSlide();
-        slidesElementsArray[objectSliderVisibleSlides.getNext].classList.add(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.getNext()].classList.add(styles.hideSlide);
         setTimeout( () => {
-            autoplayReset(timeOfChangingSlides);
+            if (autoplay) {
+                autoplayReset(timeOfChangingSlides);
+            }
             switchSlideBlocked = false;
-            slidesElementsArray[objectSliderVisibleSlides.getNext].classList.remove(styles.hideSlide);
+            slidesElementsArray[objectSliderVisibleSlides.getNext()].classList.remove(styles.hideSlide);
             }, timeToChangeSlides)
     }
 
@@ -135,16 +138,18 @@ function createSlider(idElement, {
         stopAutoplay();
         switchSlideBlocked = true;
         switchToLeftSlide();
-        slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.add(styles.hideSlide);
+        slidesElementsArray[objectSliderVisibleSlides.getPrev()].classList.add(styles.hideSlide);
         setTimeout( () => {
-            autoplayReset(timeOfChangingSlides);
+            if (autoplay) {
+                autoplayReset(timeOfChangingSlides);
+            }
             switchSlideBlocked = false;
-            slidesElementsArray[objectSliderVisibleSlides.getPrev].classList.remove(styles.hideSlide);
+            slidesElementsArray[objectSliderVisibleSlides.getPrev()].classList.remove(styles.hideSlide);
         }, timeToChangeSlides)
     }
 
-    //Убрать в init все, что запускается разу, в том числе и создание переменных.
     function init() {
+
         if (timeOfChangingSlides < 4) {
             timeOfChangingSlides = 4;
         }
@@ -153,6 +158,9 @@ function createSlider(idElement, {
             timeToChangeSlides = (timeToChangeSlides / 100) * 80;
         }
 
+        setSliderStyles(sliderElement, setDefaultMinimumSizes);
+        setSlidesStyles(slidesElementsArray);
+        positioningSlides();
         setSlidesDisplay();
 
         if (autoplay) {
@@ -162,19 +170,52 @@ function createSlider(idElement, {
         slidesElementsArray.forEach(value => {
             value.style.transitionDuration = `${timeToChangeSlides}ms`;
             value.style.transitionTimingFunction = transitionTimingFunctionName;
-        })
+        });
+
+        if (touchmove) {
+            sliderElement.addEventListener("touchstart", event => {
+                gestureStartingPositionX = event.touches[0].clientX;
+                stopAutoplay();
+            });
+            sliderElement.addEventListener("touchmove", moveSliderTouch);
+            sliderElement.addEventListener("touchend", () => {
+                swipeLength = 0;
+                autoplayReset(timeOfChangingSlides);
+            });
+
+            sliderElement.addEventListener("touchmove", touchScrollBlocker);
+
+            sliderElement.addEventListener("mousedown", pseudoTouchMoveStart);
+            sliderElement.addEventListener("mousemove", pseudoTouchMove);
+            sliderElement.addEventListener("mouseup", pseudoTouchMoveEnd);
+            sliderElement.addEventListener("mouseleave", pseudoTouchMoveEnd);
+        }
+
+        if (buttonControl) {
+            buttonControlElementsList.rightButtonControl.addEventListener("click", () => {
+                if (!switchSlideBlocked) {
+                    leftSliderShift();
+                }
+            });
+            buttonControlElementsList.leftButtonControl.addEventListener("click", () => {
+                if (!switchSlideBlocked) {
+                    rightSliderShift();
+                }
+            });
+            if (autoplay) {
+                buttonControlElementsList.pauseButtonControl.addEventListener("click", pauseSwitch);
+            }
+        }
     }
 
-    let gestureStartingPositionX = 0;
-    let swipeLength = 0;
-    let switchSlideBlocked = false;
     let autolpayTimer = null;
     let hasPseudoTouchMouse = false;
-
+    let swipeLength = 0;
+    let gestureStartingPositionX = 0;
+    let switchSlideBlocked = false;
     const {
         sliderElement,
         slidesElementsArray_notProcessed,
-        objectSliderVisibleSlides,
         sliderWidth,
         hasError
     } = getDOMDate(idElement);
@@ -182,48 +223,11 @@ function createSlider(idElement, {
         return;
     }
     const slidesElementsArray = addingMissingSlides(slidesElementsArray_notProcessed);
-    positioningSlides();
+    const objectSliderVisibleSlides = createObjectSliderVisibleSlides(slidesElementsArray);
     const buttonControlElementsList = addButtonControl(sliderElement, buttonControl, buttonDefaultStyles);
-    setSliderStyles(sliderElement, setDefaultMinimumSizes);
-    setSlidesStyles(slidesElementsArray);
-
 
     init();
 
-    if (touchmove) {
-        sliderElement.addEventListener("touchstart", event => {
-            gestureStartingPositionX = event.touches[0].clientX;
-            stopAutoplay();
-        });
-        sliderElement.addEventListener("touchmove", moveSliderTouch);
-        sliderElement.addEventListener("touchend", () => {
-            swipeLength = 0;
-            autoplayReset(timeOfChangingSlides);
-        });
-
-        sliderElement.addEventListener("touchmove", touchScrollBlocker);
-
-        sliderElement.addEventListener("mousedown", pseudoTouchMoveStart);
-        sliderElement.addEventListener("mousemove", pseudoTouchMove);
-        sliderElement.addEventListener("mouseup", pseudoTouchMoveEnd);
-        sliderElement.addEventListener("mouseleave", pseudoTouchMoveEnd);
-    }
-
-    if (buttonControl) {
-        buttonControlElementsList.rightButtonControl.addEventListener("click", () => {
-            if (!switchSlideBlocked) {
-                leftSliderShift();
-            }
-        });
-        buttonControlElementsList.leftButtonControl.addEventListener("click", () => {
-            if (!switchSlideBlocked) {
-                rightSliderShift();
-            }
-        });
-        if (autoplay) {
-            buttonControlElementsList.pauseButtonControl.addEventListener("click", pauseSwitch);
-        }
-    }
 }
 
 export default createSlider;

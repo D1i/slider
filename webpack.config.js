@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
     context: path.resolve(__dirname, "src"),
-    entry: "slider.js",
+    entry: "index.js",
     devtool: "inline-source-map",
     output: {
         filename: "dist.js",

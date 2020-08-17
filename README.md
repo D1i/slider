@@ -87,7 +87,7 @@
 <!doctype html>
 <html>
 <head>
-   <script src="../src/slider.js"></script>
+   <script src="../src/index.js"></script>
 </head>
 <body>
 <div id="firstSlider">
