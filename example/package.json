@@ -4,7 +4,8 @@
   "description": "Слайдер-карусель для веб-страниц, принимает теги img и div. ## Функционал * Тонкая настройка autoplay. * Возможность создания кнопок контроля для переключения слайдов и отключения/включения autoplay. * Возможность отключения/включения touchmove. * Принимает в качестве слайдов img и div. * Возможно подключение нескольких слайдов на одной странице. * Автоматическое выравнивание img по центру. ## Настройка слайдера `autoplay` (boolean) - включает авто переключением  слайдов. true - включено | false - выключено. Значение по умолчанию: true. ```JS     createSlider(\"slider\", { autoplay: true }); ```",
   "example": "example/webpack.config.js",
   "directories": {
-    "example": "example"
+    "example": "example",
+    "dist": "../dist/"
   },
   "dependencies": {},
   "devDependencies": {

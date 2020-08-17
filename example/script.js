@@ -2,7 +2,7 @@
 
 import { mySlider } from "../dist/dist";
 
-console.log(mySlider)
+// console.log(mySlider);
 
 mySlider.createSlider("firstSlider", {
     autoplay: false,
